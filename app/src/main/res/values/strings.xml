@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">tipsy</string>
+    <string name="app_name">Tipsy</string>
+    <string name="common_skip">Skip</string>
+    <string name="common_or">OR</string>
+    <string name="common_start">Start !</string>
+
+    // Dilemma
+    <string name="would_you_rather">Would you rather</string>
+    <string name="dilemma_title">Dilemma</string>
+    <string name="dilemma_subtitle">What you need to choose between two dilemmas ?</string>
 </resources>

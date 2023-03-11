@@ -17,7 +17,15 @@
         <fragment
             android:id="@+id/dilemmaOnBoardingFragment"
             android:name="com.jmabilon.tipsy.ui.dilemma.DilemmaOnBoardingFragment"
-            android:label="DilemmaOnBoardingFragment" />
+            android:label="DilemmaOnBoardingFragment" >
+            <action
+                android:id="@+id/action_dilemmaOnBoardingFragment_to_dilemmaFragment"
+                app:destination="@id/dilemmaFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/dilemmaFragment"
+            android:name="com.jmabilon.tipsy.ui.dilemma.DilemmaFragment"
+            android:label="DilemmaFragment" />
     </navigation>
 
 </navigation>
