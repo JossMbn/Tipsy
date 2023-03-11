@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.jmabilon.tipsy.ui.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_nested_dilemma_graph"
+            app:destination="@id/nested_dilemma_graph" />
+    </fragment>
+    <navigation android:id="@+id/nested_dilemma_graph"
+        app:startDestination="@id/dilemmaOnBoardingFragment">
+        <fragment
+            android:id="@+id/dilemmaOnBoardingFragment"
+            android:name="com.jmabilon.tipsy.ui.dilemma.DilemmaOnBoardingFragment"
+            android:label="DilemmaOnBoardingFragment" />
+    </navigation>
+
+</navigation>
