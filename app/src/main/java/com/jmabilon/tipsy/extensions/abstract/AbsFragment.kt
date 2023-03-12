@@ -1,6 +1,8 @@
 package com.jmabilon.tipsy.extensions.abstract
 
+import android.os.Build
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,11 +27,21 @@ abstract class AbsFragment<VB: ViewBinding>(
         if (_binding == null) {
             throw IllegalArgumentException("Binding must not be null")
         }
+
+        initViewModelObservation()
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    open fun initViewModelObservation() { /* do something in fragment */ }
+
+    fun performHapticFeedback() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            view?.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+        }
     }
 }
