@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="CTA" parent="Museo.Semibold.16">
-        <item name="android:paddingVertical">15dp</item>
+        <item name="android:paddingVertical">20dp</item>
         <item name="android:paddingHorizontal">10dp</item>
         <item name="android:gravity">center</item>
         <item name="android:elevation">0dp</item>
@@ -13,7 +13,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/museo_bold</item>
         <item name="fontFamily">@font/museo_bold</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="Museo">
@@ -85,6 +85,10 @@
 
     <style name="Museo.Bold.18">
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Museo.Bold.20">
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="Museo.Bold.40">

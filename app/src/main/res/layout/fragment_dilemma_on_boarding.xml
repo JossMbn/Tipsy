@@ -38,7 +38,7 @@
 
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/button"
         style="@style/CTA.Primary"
         android:layout_width="match_parent"

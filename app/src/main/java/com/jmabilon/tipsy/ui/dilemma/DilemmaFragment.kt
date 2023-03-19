@@ -36,8 +36,8 @@ class DilemmaFragment :
         super.initViewModelObservation()
 
         viewModel.dilemmaData.observe(viewLifecycleOwner) { dilemma ->
-            binding.firstCard.setCardText(dilemma.firstDilemma)
-            binding.secondCard.setCardText(dilemma.secondDilemma)
+            binding.firstCard.setCardText(dilemma.firstDilemma?.replaceFirstChar(Char::uppercaseChar))
+            binding.secondCard.setCardText(dilemma.secondDilemma?.replaceFirstChar(Char::uppercaseChar))
         }
     }
 

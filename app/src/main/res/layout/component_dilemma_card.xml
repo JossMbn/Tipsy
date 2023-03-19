@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/component_text"
-            style="@style/Museo.Semibold.18"
+            style="@style/Museo.Bold.20"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
