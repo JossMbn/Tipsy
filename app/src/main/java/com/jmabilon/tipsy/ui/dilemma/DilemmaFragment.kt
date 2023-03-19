@@ -3,10 +3,16 @@ package com.jmabilon.tipsy.ui.dilemma
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.jmabilon.tipsy.databinding.FragmentDilemmaBinding
 import com.jmabilon.tipsy.extensions.abstract.AbsFragment
+import com.jmabilon.tipsy.extensions.android.safeNavigation
 import com.jmabilon.tipsy.ui.dilemma.component.DilemmaCardComponent
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class DilemmaFragment :
     AbsFragment<FragmentDilemmaBinding>(FragmentDilemmaBinding::inflate),
@@ -35,10 +41,15 @@ class DilemmaFragment :
     override fun initViewModelObservation() {
         super.initViewModelObservation()
 
-        viewModel.dilemmaData.observe(viewLifecycleOwner) { dilemma ->
-            binding.firstCard.setCardText(dilemma.firstDilemma?.replaceFirstChar(Char::uppercaseChar))
-            binding.secondCard.setCardText(dilemma.secondDilemma?.replaceFirstChar(Char::uppercaseChar))
-        }
+        viewModel.uiState.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED).onEach { uiState ->
+            val (dilemma, isGameFinish) = uiState
+            binding.firstCard.setCardText(dilemma?.firstDilemma?.replaceFirstChar(Char::uppercaseChar))
+            binding.secondCard.setCardText(dilemma?.secondDilemma?.replaceFirstChar(Char::uppercaseChar))
+            if (isGameFinish) {
+                val directions = DilemmaFragmentDirections.actionDilemmaFragmentToDilemmaDialogFragment()
+                safeNavigation(directions)
+            }
+        }.launchIn(lifecycleScope)
     }
 
     override fun onCardClick() {

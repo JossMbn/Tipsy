@@ -1,30 +1,49 @@
 package com.jmabilon.tipsy.ui.dilemma
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jmabilon.tipsy.data.Dilemma
 import com.jmabilon.tipsy.data.dilemmaList
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 
 class DilemmaViewModel : ViewModel() {
 
-    private var _dilemmaData = MutableLiveData<Dilemma>()
+    private var _uiState = MutableStateFlow(value = DilemmaUiState())
 
-    val dilemmaData: LiveData<Dilemma>
-        get() = _dilemmaData
+    val uiState: StateFlow<DilemmaUiState>
+        get() = _uiState
 
     private var data: List<Dilemma> = dilemmaList
     private var dataPosition = 0
 
     fun loadData() {
         dataPosition += 1
-        _dilemmaData.postValue(data.first())
+        updateDilemmaData(data.first())
     }
 
     fun getNextDilemma() {
         if (dataPosition < data.size) {
-            _dilemmaData.postValue(data[dataPosition])
+            updateDilemmaData(data[dataPosition])
             dataPosition += 1
+        } else {
+            updateIsGameFinish(true)
+        }
+    }
+
+    private fun updateDilemmaData(newData: Dilemma) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                dilemmaData =  newData
+            )
+        }
+    }
+
+    private fun updateIsGameFinish(isFinish: Boolean) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                isGameFinish =  isFinish
+            )
         }
     }
 }

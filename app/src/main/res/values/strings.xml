@@ -3,9 +3,13 @@
     <string name="common_skip">Skip</string>
     <string name="common_or">OR</string>
     <string name="common_start">Start !</string>
+    <string name="common_go_home">Go home</string>
+    <string name="common_congratulation">Congratulation !</string>
+    <string name="common_dialog_description">You will be redirected to the home page where other games are waiting for you.</string>
 
     // Dilemma
     <string name="would_you_rather">Would you rather</string>
     <string name="dilemma_title">Dilemma</string>
     <string name="dilemma_subtitle">What you need to choose between two dilemmas ?</string>
+    <string name="dilemma_dialog_subtitle">You have come to the end of all the dilemmas !</string>
 </resources>

@@ -25,7 +25,18 @@
         <fragment
             android:id="@+id/dilemmaFragment"
             android:name="com.jmabilon.tipsy.ui.dilemma.DilemmaFragment"
-            android:label="DilemmaFragment" />
+            android:label="DilemmaFragment" >
+            <action
+                android:id="@+id/action_dilemmaFragment_to_dilemmaDialogFragment"
+                app:destination="@id/dilemmaDialogFragment" />
+        </fragment>
+        <dialog
+            android:id="@+id/dilemmaDialogFragment"
+            android:name="com.jmabilon.tipsy.ui.dilemma.DilemmaDialogFragment"
+            android:label="DilemmaDialogFragment">
+            <action
+                android:id="@+id/action_dilemmaDialogFragment_to_homeFragment"
+                app:destination="@id/homeFragment"/>
+        </dialog>
     </navigation>
-
 </navigation>

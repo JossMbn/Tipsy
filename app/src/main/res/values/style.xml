@@ -116,8 +116,8 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="Museo.Extrabold.20">
-        <item name="android:textSize">20sp</item>
+    <style name="Museo.Extrabold.30">
+        <item name="android:textSize">30sp</item>
     </style>
     
 </resources>
