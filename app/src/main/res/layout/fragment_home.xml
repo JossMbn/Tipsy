@@ -15,4 +15,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/true_or_dare_game_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="True or Dare"
+        app:layout_constraintTop_toBottomOf="@id/dilemma_game_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

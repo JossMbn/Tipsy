@@ -1,5 +1,6 @@
 package com.jmabilon.tipsy.extensions.abstract
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
@@ -9,7 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class AbsFragment<VB: ViewBinding>(
+abstract class AbsViewBindingFragment<VB: ViewBinding>(
     private val bindingInflater: (inflater: LayoutInflater) -> VB
 ) : Fragment() {
 
@@ -43,5 +44,12 @@ abstract class AbsFragment<VB: ViewBinding>(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             view?.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
         }
+    }
+
+    fun launchBackgroundAnimation() {
+        val animatorBackground: AnimationDrawable = binding.root.background as AnimationDrawable
+        animatorBackground.setEnterFadeDuration(1000)
+        animatorBackground.setExitFadeDuration(3500)
+        animatorBackground.start()
     }
 }

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/dilemma_gradiant">
+    android:background="@drawable/dilemma_first_gradiant">
 
     <LinearLayout
         android:id="@+id/header_component"

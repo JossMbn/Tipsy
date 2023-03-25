@@ -10,7 +10,7 @@
     // Dilemma
     <string name="would_you_rather">Would you rather</string>
     <string name="dilemma_title">Dilemma</string>
-    <string name="dilemma_subtitle">What you need to choose between two dilemmas ?</string>
+    <string name="dilemma_subtitle">What would you do if you need to choose between two dilemmas ?</string>
     <string name="dilemma_dialog_subtitle">You have come to the end of all the dilemmas !</string>
     <string name="dilemma_count">dilemma count</string>
     <string-array name="dilemma_number_item_list">
@@ -21,4 +21,8 @@
         <item>100</item>
         <item>150</item>
     </string-array>
+
+    // True or Dare
+    <string name="tod_title">Truth or Dare</string>
+    <string name="tod_subtitle">The best game to get to know your friends better</string>
 </resources>

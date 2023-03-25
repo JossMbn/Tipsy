@@ -10,14 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.databinding.FragmentDilemmaBinding
-import com.jmabilon.tipsy.extensions.abstract.AbsFragment
+import com.jmabilon.tipsy.extensions.abstract.AbsViewBindingFragment
 import com.jmabilon.tipsy.extensions.android.safeNavigation
 import com.jmabilon.tipsy.ui.dilemma.component.DilemmaCardComponent
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class DilemmaFragment :
-    AbsFragment<FragmentDilemmaBinding>(FragmentDilemmaBinding::inflate),
+    AbsViewBindingFragment<FragmentDilemmaBinding>(FragmentDilemmaBinding::inflate),
     DilemmaCardComponent.DilemmaComponentListener {
 
     private val viewModel: DilemmaViewModel by viewModels()

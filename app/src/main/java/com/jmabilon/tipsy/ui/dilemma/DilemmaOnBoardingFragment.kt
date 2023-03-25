@@ -6,11 +6,11 @@ import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
 import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.databinding.FragmentDilemmaOnBoardingBinding
-import com.jmabilon.tipsy.extensions.abstract.AbsFragment
+import com.jmabilon.tipsy.extensions.abstract.AbsViewBindingFragment
 import com.jmabilon.tipsy.extensions.android.safeNavigation
 
 class DilemmaOnBoardingFragment :
-    AbsFragment<FragmentDilemmaOnBoardingBinding>(FragmentDilemmaOnBoardingBinding::inflate) {
+    AbsViewBindingFragment<FragmentDilemmaOnBoardingBinding>(FragmentDilemmaOnBoardingBinding::inflate) {
 
     private var dilemmaCount: String? = null
     var dropDownItems: Array<String>? = null
@@ -18,7 +18,7 @@ class DilemmaOnBoardingFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        launchBackgroundAnimation()
         binding.dropdownMenuTextView.setOnItemClickListener { _, _, _, _ ->
             dilemmaCount = binding.dropdownMenuTextView.text.toString()
         }

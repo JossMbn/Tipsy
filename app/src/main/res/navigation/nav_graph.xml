@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_homeFragment_to_nested_dilemma_graph"
             app:destination="@id/nested_dilemma_graph" />
+        <action
+            android:id="@+id/action_homeFragment_to_trueOrDareOnBoardingFragment"
+            app:destination="@id/nested_truth_or_dare_graph" />
     </fragment>
     <navigation android:id="@+id/nested_dilemma_graph"
         app:startDestination="@id/dilemmaOnBoardingFragment">
@@ -42,5 +45,12 @@
                 android:id="@+id/action_dilemmaDialogFragment_to_homeFragment"
                 app:destination="@id/homeFragment"/>
         </dialog>
+    </navigation>
+    <navigation android:id="@+id/nested_truth_or_dare_graph"
+        app:startDestination="@id/truthOrDareOnBoardingFragment">
+        <fragment
+            android:id="@+id/truthOrDareOnBoardingFragment"
+            android:name="com.jmabilon.tipsy.ui.truthordare.TruthOrDareOnBoardingFragment"
+            android:label="TruthOrDareOnBoardingFragment" />
     </navigation>
 </navigation>
