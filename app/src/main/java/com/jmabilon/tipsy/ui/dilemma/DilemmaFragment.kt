@@ -7,6 +7,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.databinding.FragmentDilemmaBinding
 import com.jmabilon.tipsy.extensions.abstract.AbsFragment
 import com.jmabilon.tipsy.extensions.android.safeNavigation
@@ -19,11 +21,15 @@ class DilemmaFragment :
     DilemmaCardComponent.DilemmaComponentListener {
 
     private val viewModel: DilemmaViewModel by viewModels()
+    private val args: DilemmaFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.loadData()
+        viewModel.loadData(
+            args.dilemmaCount,
+            resources.getStringArray(R.array.dilemma_number_item_list)
+        )
         binding.firstCard.setListener(this)
         binding.secondCard.setListener(this)
 
@@ -46,7 +52,8 @@ class DilemmaFragment :
             binding.firstCard.setCardText(dilemma?.firstDilemma?.replaceFirstChar(Char::uppercaseChar))
             binding.secondCard.setCardText(dilemma?.secondDilemma?.replaceFirstChar(Char::uppercaseChar))
             if (isGameFinish) {
-                val directions = DilemmaFragmentDirections.actionDilemmaFragmentToDilemmaDialogFragment()
+                val directions =
+                    DilemmaFragmentDirections.actionDilemmaFragmentToDilemmaDialogFragment()
                 safeNavigation(directions)
             }
         }.launchIn(lifecycleScope)

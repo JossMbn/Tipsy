@@ -16,18 +16,28 @@ class DilemmaViewModel : ViewModel() {
 
     private var data: List<Dilemma> = dilemmaList
     private var dataPosition = 0
+    private var dilemmaCount: Int = 30
 
-    fun loadData() {
+    fun loadData(dilemmaCount: String, dilemmaCountArray: Array<String>) {
+        setDilemmaCount(dilemmaCount, dilemmaCountArray)
         dataPosition += 1
         updateDilemmaData(data.first())
     }
 
     fun getNextDilemma() {
-        if (dataPosition < data.size) {
+        if (dataPosition < dilemmaCount) {
             updateDilemmaData(data[dataPosition])
             dataPosition += 1
         } else {
             updateIsGameFinish(true)
+        }
+    }
+
+    private fun setDilemmaCount(count: String, dilemmaCountArray: Array<String>) {
+        for (item in dilemmaCountArray) {
+            if (item == count) {
+                dilemmaCount = item.toInt()
+            }
         }
     }
 

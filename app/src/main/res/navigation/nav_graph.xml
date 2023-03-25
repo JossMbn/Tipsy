@@ -29,6 +29,10 @@
             <action
                 android:id="@+id/action_dilemmaFragment_to_dilemmaDialogFragment"
                 app:destination="@id/dilemmaDialogFragment" />
+            <argument
+                android:name="dilemmaCount"
+                app:argType="string"
+                android:defaultValue="30" />
         </fragment>
         <dialog
             android:id="@+id/dilemmaDialogFragment"

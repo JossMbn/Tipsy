@@ -17,7 +17,7 @@ class DilemmaCardComponent(
     private var listener: DilemmaComponentListener? = null
 
     init {
-        binding.componentCard.setOnClickListener {
+        binding.cardComponentText.setOnClickListener {
             listener?.onCardClick()
         }
     }
@@ -32,7 +32,7 @@ class DilemmaCardComponent(
     }
 
     private fun updateComponent() {
-        binding.componentText.text = this.cardText
+        binding.cardComponentText.text = this.cardText
     }
 
     interface DilemmaComponentListener {

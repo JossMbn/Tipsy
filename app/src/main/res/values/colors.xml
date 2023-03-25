@@ -23,5 +23,6 @@
     <color name="pink_main">#FFE94057</color>
 
     <!-- Grey -->
+    <color name="grey_100">#C8C8C8</color>
     <color name="grey_200">#9a9a9a</color>
 </resources>
