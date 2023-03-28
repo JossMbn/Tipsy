@@ -91,6 +91,10 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="Museo.Bold.30">
+        <item name="android:textSize">30sp</item>
+    </style>
+
     <style name="Museo.Bold.40">
         <item name="android:textSize">40sp</item>
     </style>

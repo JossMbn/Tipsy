@@ -5,6 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.jmabilon.tipsy.databinding.FragmentTruthOrDareOnBoardingBinding
 import com.jmabilon.tipsy.extensions.abstract.AbsViewBindingFragment
+import com.jmabilon.tipsy.extensions.android.safeNavigation
 
 class TruthOrDareOnBoardingFragment :
     AbsViewBindingFragment<FragmentTruthOrDareOnBoardingBinding>(
@@ -17,6 +18,12 @@ class TruthOrDareOnBoardingFragment :
 
         binding.backIcon.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.button.setOnClickListener {
+            val directions = TruthOrDareOnBoardingFragmentDirections
+                .actionTruthOrDareOnBoardingFragmentToTruthOrDareFragment()
+            safeNavigation(directions)
         }
     }
 }

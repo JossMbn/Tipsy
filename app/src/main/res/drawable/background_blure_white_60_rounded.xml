@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/white_60" />
-    <corners android:radius="25dp"/>
-</shape>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/grey_200">
+    <item>
+        <shape>
+            <solid android:color="@color/white_60" />
+            <corners android:radius="25dp"/>
+        </shape>
+    </item>
+    <item
+        android:id="@android:id/mask"
+        android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/grey_200" />
+            <corners android:radius="25dp"/>
+        </shape>
+    </item>
+</ripple>

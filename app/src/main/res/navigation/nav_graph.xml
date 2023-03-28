@@ -51,6 +51,14 @@
         <fragment
             android:id="@+id/truthOrDareOnBoardingFragment"
             android:name="com.jmabilon.tipsy.ui.truthordare.TruthOrDareOnBoardingFragment"
-            android:label="TruthOrDareOnBoardingFragment" />
+            android:label="TruthOrDareOnBoardingFragment" >
+            <action
+                android:id="@+id/action_truthOrDareOnBoardingFragment_to_truthOrDareFragment"
+                app:destination="@id/truthOrDareFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/truthOrDareFragment"
+            android:name="com.jmabilon.tipsy.ui.truthordare.TruthOrDareFragment"
+            android:label="TruthOrDareFragment" />
     </navigation>
 </navigation>
