@@ -16,6 +16,16 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="Switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/green</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+    </style>
+
+    <style name="TodEditText" parent="Museo.Semibold.20">
+        <item name="android:paddingVertical">15dp</item>
+        <item name="android:paddingHorizontal">20dp</item>
+    </style>
+
     <style name="Museo">
         <item name="android:fontFamily">@font/museo_regular</item>
         <item name="fontFamily">@font/museo_regular</item>
@@ -66,6 +76,10 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="Museo.Semibold.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <style name="Museo.Bold">
         <item name="android:fontFamily">@font/museo_bold</item>
         <item name="fontFamily">@font/museo_bold</item>
@@ -89,6 +103,10 @@
 
     <style name="Museo.Bold.20">
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Museo.Bold.25">
+        <item name="android:textSize">25sp</item>
     </style>
 
     <style name="Museo.Bold.30">

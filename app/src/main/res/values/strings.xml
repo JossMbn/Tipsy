@@ -25,4 +25,5 @@
     // True or Dare
     <string name="tod_title">Truth or Dare</string>
     <string name="tod_subtitle">The best game to get to know your friends better</string>
+    <string name="tod_hint_text_view">Player %1$s</string>
 </resources>

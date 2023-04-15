@@ -21,6 +21,7 @@ class TruthOrDareOnBoardingFragment :
         }
 
         binding.button.setOnClickListener {
+            performHapticFeedback()
             val directions = TruthOrDareOnBoardingFragmentDirections
                 .actionTruthOrDareOnBoardingFragmentToTruthOrDareFragment()
             safeNavigation(directions)

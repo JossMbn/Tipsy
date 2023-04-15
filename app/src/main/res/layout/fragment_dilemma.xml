@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/dilemma_first_gradiant">
 
     <LinearLayout
         android:id="@+id/header_component"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
         android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/back_icon"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/arrow_left"
-            android:padding="12dp"
-            app:tint="@color/white"
+            android:background="@drawable/background_blure_white_40_rounded"
             android:importantForAccessibility="no"
-            android:background="@drawable/background_blure_white_40_rounded" />
+            android:padding="12dp"
+            android:src="@drawable/arrow_left"
+            app:tint="@color/white" />
 
         <TextView
             style="@style/Museo.Semibold.18"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:layout_marginHorizontal="10dp"
-            android:text="@string/would_you_rather" />
+            android:text="@string/would_you_rather"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/skip_text"
             style="@style/Museo.Extrabold.12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_blure_white_40_rounded"
             android:gravity="center"
             android:paddingHorizontal="12dp"
             android:paddingVertical="16dp"
-            android:background="@drawable/background_blure_white_40_rounded"
-            android:textColor="@color/white"
-            android:text="@string/common_skip"/>
+            android:text="@string/common_skip"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toTopOf="@+id/or_separator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_component"/>
+        app:layout_constraintTop_toBottomOf="@+id/header_component" />
 
     <TextView
         android:id="@+id/or_separator"
@@ -66,6 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/background_blure_white_60_rounded"
+        android:clickable="false"
         android:gravity="center"
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
@@ -84,6 +85,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/or_separator"/>
+        app:layout_constraintTop_toBottomOf="@+id/or_separator" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

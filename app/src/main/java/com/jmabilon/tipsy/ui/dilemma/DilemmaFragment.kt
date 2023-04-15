@@ -47,16 +47,17 @@ class DilemmaFragment :
     override fun initViewModelObservation() {
         super.initViewModelObservation()
 
-        viewModel.uiState.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED).onEach { uiState ->
-            val (dilemma, isGameFinish) = uiState
-            binding.firstCard.setCardText(dilemma?.firstDilemma?.replaceFirstChar(Char::uppercaseChar))
-            binding.secondCard.setCardText(dilemma?.secondDilemma?.replaceFirstChar(Char::uppercaseChar))
-            if (isGameFinish) {
-                val directions =
-                    DilemmaFragmentDirections.actionDilemmaFragmentToDilemmaDialogFragment()
-                safeNavigation(directions)
-            }
-        }.launchIn(lifecycleScope)
+        viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+            .onEach { uiState ->
+                val (dilemma, isGameFinish) = uiState
+                binding.firstCard.setCardText(dilemma?.firstDilemma?.replaceFirstChar(Char::uppercaseChar))
+                binding.secondCard.setCardText(dilemma?.secondDilemma?.replaceFirstChar(Char::uppercaseChar))
+                if (isGameFinish) {
+                    val directions =
+                        DilemmaFragmentDirections.actionDilemmaFragmentToDilemmaDialogFragment()
+                    safeNavigation(directions)
+                }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     override fun onCardClick() {
