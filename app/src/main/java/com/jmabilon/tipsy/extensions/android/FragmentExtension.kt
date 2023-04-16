@@ -21,3 +21,7 @@ fun Fragment.safeNavigation(directions: NavDirections) {
         Log.d("NAVIGATION_SAFE_TAG", "navigation error for action $directions : ${e.message}")
     }
 }
+
+fun Fragment.hideKeyboard() {
+    view?.let { activity?.hideKeyboard(it) }
+}

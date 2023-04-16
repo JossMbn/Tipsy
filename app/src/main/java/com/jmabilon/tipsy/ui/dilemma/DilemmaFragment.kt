@@ -10,18 +10,22 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.databinding.FragmentDilemmaBinding
-import com.jmabilon.tipsy.extensions.abstract.AbsViewBindingFragment
 import com.jmabilon.tipsy.extensions.android.safeNavigation
+import com.jmabilon.tipsy.extensions.viewbinding.AbsViewBindingFragment
 import com.jmabilon.tipsy.ui.dilemma.component.DilemmaCardComponent
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class DilemmaFragment :
-    AbsViewBindingFragment<FragmentDilemmaBinding>(FragmentDilemmaBinding::inflate),
+    AbsViewBindingFragment<FragmentDilemmaBinding>(),
     DilemmaCardComponent.DilemmaComponentListener {
 
     private val viewModel: DilemmaViewModel by viewModels()
     private val args: DilemmaFragmentArgs by navArgs()
+
+    override fun getViewBinding(): FragmentDilemmaBinding {
+        return FragmentDilemmaBinding.inflate(layoutInflater)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

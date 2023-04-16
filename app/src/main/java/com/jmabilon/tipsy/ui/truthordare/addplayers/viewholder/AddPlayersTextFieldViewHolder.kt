@@ -1,10 +1,14 @@
 package com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder
 
 import android.content.Context
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.recyclerview.widget.RecyclerView
 import com.jmabilon.tipsy.R
+import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
 import com.jmabilon.tipsy.databinding.ItemTruthOrDareAddPlayersTextFieldBinding
+import com.jmabilon.tipsy.extensions.android.hideKeyboard
 import com.jmabilon.tipsy.ui.truthordare.addplayers.AddPlayerItemViewPresentation
 
 class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFieldBinding) :
@@ -13,10 +17,11 @@ class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFi
     fun bind(
         item: AddPlayerItemViewPresentation,
         context: Context,
+        view: View,
         listener: AddPlayersTextFieldListener
     ) {
-        item.playerName?.let {
-            binding.playerField.setText(item.playerName)
+        item.player?.let {
+            binding.playerField.setText(item.player?.playerName)
         }
 
         item.playerPosition?.let {
@@ -33,9 +38,26 @@ class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFi
             }
         }
 
+        binding.playerField.setOnEditorActionListener { textView, actionId, event ->
+            if (
+                (event != null && (event.keyCode == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) &&
+                !textView.text.isNullOrEmpty()
+            ) {
+                listener.onTextFieldEnterClicked(
+                    TruthOrDarePlayer(playerName = textView.text.toString())
+                )
+                textView.clearFocus()
+                context.hideKeyboard(view)
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
+        }
+
         binding.removeButton.setOnClickListener {
             item.playerPosition?.let { position ->
-                listener.onRemoveClicked(position)
+                item.player?.let { player ->
+                    listener.onRemoveClicked(player, position)
+                }
             }
         }
 
@@ -51,6 +73,7 @@ class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFi
     }
 
     interface AddPlayersTextFieldListener {
-        fun onRemoveClicked(position: Int)
+        fun onRemoveClicked(player: TruthOrDarePlayer, position: Int)
+        fun onTextFieldEnterClicked(newPlayer: TruthOrDarePlayer)
     }
 }

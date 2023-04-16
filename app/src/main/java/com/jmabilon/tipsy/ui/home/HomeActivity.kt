@@ -6,8 +6,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.databinding.ActivityHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class HomeActivity: AppCompatActivity() {
+@AndroidEntryPoint
+class HomeActivity : AppCompatActivity() {
 
     private var binding: ActivityHomeBinding? = null
     private var controller: NavController? = null
@@ -17,7 +19,8 @@ class HomeActivity: AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        val navHostController = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostController =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         controller = navHostController.navController
     }
 }

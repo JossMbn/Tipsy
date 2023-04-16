@@ -2,10 +2,12 @@ package com.jmabilon.tipsy.ui.truthordare.addplayers.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
 import com.jmabilon.tipsy.databinding.*
 import com.jmabilon.tipsy.ui.truthordare.addplayers.AddPlayerItemViewPresentation
 import com.jmabilon.tipsy.ui.truthordare.addplayers.AddPlayersItemViewEnum
@@ -13,6 +15,7 @@ import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.*
 
 class TruthOrDareAddPLayersAdapter(
     private val context: Context,
+    private val view: View,
     private val addPLayersBottomListener: AddPlayersBottomViewHolder.AddPLayersBottomListener,
     private val addPLayersAddButtonListener: AddPlayersAddButtonViewHolder.AddPlayersAddButtonListener,
     private val addPlayersTextFieldListener: AddPlayersTextFieldViewHolder.AddPlayersTextFieldListener
@@ -20,7 +23,7 @@ class TruthOrDareAddPLayersAdapter(
     ListAdapter<AddPlayerItemViewPresentation, RecyclerView.ViewHolder>(DiffCallBack()) {
 
     fun initData(
-        playerList: List<String>,
+        playerList: List<TruthOrDarePlayer>?,
         screenDensity: Float
     ) {
         val listLocal = mutableListOf<AddPlayerItemViewPresentation>()
@@ -37,11 +40,11 @@ class TruthOrDareAddPLayersAdapter(
             )
         )
 
-        if (playerList.isEmpty()) {
+        if (playerList.isNullOrEmpty()) {
             listLocal.add(
                 AddPlayerItemViewPresentation(
                     type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD,
-                    playerName = null,
+                    player = null,
                     playerPosition = 0,
                     screenDensity = screenDensity
                 )
@@ -49,7 +52,7 @@ class TruthOrDareAddPLayersAdapter(
             listLocal.add(
                 AddPlayerItemViewPresentation(
                     type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD,
-                    playerName = null,
+                    player = null,
                     playerPosition = 1,
                     screenDensity = screenDensity
                 )
@@ -59,7 +62,7 @@ class TruthOrDareAddPLayersAdapter(
                 listLocal.add(
                     AddPlayerItemViewPresentation(
                         type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD,
-                        playerName = item,
+                        player = item,
                         playerPosition = playerPosition,
                         screenDensity = screenDensity
                     )
@@ -85,7 +88,9 @@ class TruthOrDareAddPLayersAdapter(
         )
     }
 
-    fun updateTextFieldsList(newPlayerName: String) {
+    fun updateTextFieldsList(
+        newPlayer: TruthOrDarePlayer
+    ) {
         val listLocal = mutableListOf<AddPlayerItemViewPresentation>()
         var playerPosition = 0
 
@@ -101,7 +106,7 @@ class TruthOrDareAddPLayersAdapter(
                 listLocal.add(
                     AddPlayerItemViewPresentation(
                         type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD,
-                        playerName = newPlayerName,
+                        player = newPlayer,
                         playerPosition = playerPosition + 1
                     )
                 )
@@ -202,6 +207,7 @@ class TruthOrDareAddPLayersAdapter(
                     (holder as AddPlayersTextFieldViewHolder).bind(
                         item,
                         context,
+                        view,
                         addPlayersTextFieldListener
                     )
                 }
@@ -236,7 +242,7 @@ class TruthOrDareAddPLayersAdapter(
             } else {
                 when (oldItem.type) {
                     AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD -> {
-                        oldItem.playerName == newItem.playerName && oldItem.playerPosition == newItem.playerPosition
+                        oldItem.player == newItem.player && oldItem.playerPosition == newItem.playerPosition
                     }
                     else -> {
                         oldItem == newItem

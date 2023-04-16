@@ -19,6 +19,7 @@
         android:background="@drawable/background_edit_text_blure_white_60_rounded"
         android:ellipsize="end"
         android:focusable="true"
+        android:imeOptions="actionDone"
         android:inputType="text"
         android:paddingStart="20dp"
         android:paddingEnd="50dp"

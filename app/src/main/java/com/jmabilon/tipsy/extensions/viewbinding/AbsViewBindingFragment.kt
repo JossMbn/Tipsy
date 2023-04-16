@@ -1,4 +1,4 @@
-package com.jmabilon.tipsy.extensions.abstract
+package com.jmabilon.tipsy.extensions.viewbinding
 
 import android.graphics.drawable.AnimationDrawable
 import android.os.Build
@@ -10,21 +10,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class AbsViewBindingFragment<VB: ViewBinding>(
-    private val bindingInflater: (inflater: LayoutInflater) -> VB
-) : Fragment() {
+abstract class AbsViewBindingFragment<VB : ViewBinding> : Fragment() {
 
     private var _binding: VB? = null
 
     val binding: VB
         get() = _binding as VB
 
+    abstract fun getViewBinding(): VB
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = bindingInflater.invoke(inflater)
+        _binding = getViewBinding()
         if (_binding == null) {
             throw IllegalArgumentException("Binding must not be null")
         }
@@ -38,7 +38,9 @@ abstract class AbsViewBindingFragment<VB: ViewBinding>(
         _binding = null
     }
 
-    open fun initViewModelObservation() { /* do something in fragment */ }
+    open fun initViewModelObservation() {
+        /* do something in fragment */
+    }
 
     fun performHapticFeedback() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

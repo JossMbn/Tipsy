@@ -14,13 +14,15 @@ import androidx.navigation.fragment.navArgs
 import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.data.TruthOrDare
 import com.jmabilon.tipsy.databinding.FragmentTruthOrDareBinding
-import com.jmabilon.tipsy.extensions.abstract.AbsViewBindingFragment
 import com.jmabilon.tipsy.extensions.android.safeNavigation
+import com.jmabilon.tipsy.extensions.viewbinding.AbsViewBindingFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class TruthOrDareFragment :
-    AbsViewBindingFragment<FragmentTruthOrDareBinding>(FragmentTruthOrDareBinding::inflate) {
+    AbsViewBindingFragment<FragmentTruthOrDareBinding>() {
 
     private val viewModel: TruthOrDareViewModel by viewModels()
     private val args: TruthOrDareFragmentArgs by navArgs()
@@ -28,6 +30,10 @@ class TruthOrDareFragment :
     private var fadeInAnim: Animation? = null
     private var nextCard: TruthOrDare? = null
     private var currentCardType: TruthOrDareConstants.Type = TruthOrDareConstants.Type.TUTORIAL
+
+    override fun getViewBinding(): FragmentTruthOrDareBinding {
+        return FragmentTruthOrDareBinding.inflate(layoutInflater)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

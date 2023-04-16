@@ -1,5 +1,7 @@
 package com.jmabilon.tipsy.ui.truthordare.addplayers
 
+import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
+
 enum class AddPlayersItemViewEnum(val viewType: Int) {
     ITEM_ADD_PLAYERS_HEADER(0),
     ITEM_ADD_PLAYERS_TOGGLE(1),
@@ -10,7 +12,7 @@ enum class AddPlayersItemViewEnum(val viewType: Int) {
 
 data class AddPlayerItemViewPresentation(
     var type: AddPlayersItemViewEnum,
-    var playerName: String? = null,
+    var player: TruthOrDarePlayer? = null,
     var playerPosition: Int? = null,
     var screenDensity: Float? = null
 )

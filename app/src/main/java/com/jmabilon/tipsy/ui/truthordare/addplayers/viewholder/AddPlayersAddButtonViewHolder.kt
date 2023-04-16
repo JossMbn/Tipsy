@@ -3,6 +3,7 @@ package com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import androidx.recyclerview.widget.RecyclerView
+import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
 import com.jmabilon.tipsy.databinding.ItemTruthOrDareAddPlayersAddButtonBinding
 
 class AddPlayersAddButtonViewHolder(val binding: ItemTruthOrDareAddPlayersAddButtonBinding) :
@@ -14,7 +15,9 @@ class AddPlayersAddButtonViewHolder(val binding: ItemTruthOrDareAddPlayersAddBut
                 (event != null && (event.keyCode == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) &&
                 !textView.text.isNullOrEmpty()
             ) {
-                listener.onAddButtonClicked(textView.text.toString())
+                listener.onAddButtonClicked(
+                    TruthOrDarePlayer(playerName = textView.text.toString())
+                )
                 binding.addPlayerField.text = null
                 return@setOnEditorActionListener true
             }
@@ -23,6 +26,6 @@ class AddPlayersAddButtonViewHolder(val binding: ItemTruthOrDareAddPlayersAddBut
     }
 
     interface AddPlayersAddButtonListener {
-        fun onAddButtonClicked(newPlayerName: String)
+        fun onAddButtonClicked(newPlayer: TruthOrDarePlayer)
     }
 }
