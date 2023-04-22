@@ -1,4 +1,8 @@
 <resources>
+    // Application
+    <string name="preference_file_key">com.jmabilon.tipsy.PREFERENCE_FILE_KEY</string>
+
+    // Common
     <string name="app_name">Tipsy</string>
     <string name="common_skip">Skip</string>
     <string name="common_or">OR</string>

@@ -24,7 +24,7 @@ class TruthOrDareAddPlayersViewModel @Inject constructor(
 
     fun getAllPlayers() {
         viewModelScope.launch(Dispatchers.IO) {
-            updatePlayerList(truthOrDarePlayerRepository.getAllPLayers())
+            updatePlayerList(truthOrDarePlayerRepository.getAllPlayers())
         }
     }
 
@@ -37,6 +37,12 @@ class TruthOrDareAddPlayersViewModel @Inject constructor(
     fun deletePlayer(player: TruthOrDarePlayer) {
         viewModelScope.launch(Dispatchers.IO) {
             truthOrDarePlayerRepository.deletePlayer(player)
+        }
+    }
+
+    fun updatePlayer(playerId: Int, newPlayerName: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            truthOrDarePlayerRepository.updatePlayer(playerId, newPlayerName)
         }
     }
 

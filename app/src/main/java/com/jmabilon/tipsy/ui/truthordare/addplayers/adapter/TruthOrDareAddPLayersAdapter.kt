@@ -8,10 +8,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
-import com.jmabilon.tipsy.databinding.*
+import com.jmabilon.tipsy.databinding.ItemTruthOrDareAddPlayersAddButtonBinding
+import com.jmabilon.tipsy.databinding.ItemTruthOrDareAddPlayersBottomBinding
+import com.jmabilon.tipsy.databinding.ItemTruthOrDareAddPlayersHeaderBinding
+import com.jmabilon.tipsy.databinding.ItemTruthOrDareAddPlayersTextFieldBinding
+import com.jmabilon.tipsy.databinding.ItemTruthOrDareAddPlayersToggleBinding
 import com.jmabilon.tipsy.ui.truthordare.addplayers.AddPlayerItemViewPresentation
 import com.jmabilon.tipsy.ui.truthordare.addplayers.AddPlayersItemViewEnum
-import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.*
+import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersAddButtonViewHolder
+import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersBottomViewHolder
+import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersHeaderViewHolder
+import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersSwitchViewHolder
+import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersTextFieldViewHolder
 
 class TruthOrDareAddPLayersAdapter(
     private val context: Context,
@@ -40,25 +48,8 @@ class TruthOrDareAddPLayersAdapter(
             )
         )
 
-        if (playerList.isNullOrEmpty()) {
-            listLocal.add(
-                AddPlayerItemViewPresentation(
-                    type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD,
-                    player = null,
-                    playerPosition = 0,
-                    screenDensity = screenDensity
-                )
-            )
-            listLocal.add(
-                AddPlayerItemViewPresentation(
-                    type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD,
-                    player = null,
-                    playerPosition = 1,
-                    screenDensity = screenDensity
-                )
-            )
-        } else {
-            for (item in playerList) {
+        playerList?.let {
+            for (item in it) {
                 listLocal.add(
                     AddPlayerItemViewPresentation(
                         type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD,
@@ -154,6 +145,7 @@ class TruthOrDareAddPLayersAdapter(
                     )
                 AddPlayersHeaderViewHolder(binding)
             }
+
             AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TOGGLE.viewType -> {
                 val binding =
                     ItemTruthOrDareAddPlayersToggleBinding.inflate(
@@ -161,8 +153,9 @@ class TruthOrDareAddPLayersAdapter(
                         parent,
                         false
                     )
-                AddPlayersToggleViewHolder(binding)
+                AddPlayersSwitchViewHolder(binding)
             }
+
             AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD.viewType -> {
                 val binding =
                     ItemTruthOrDareAddPlayersTextFieldBinding.inflate(
@@ -172,6 +165,7 @@ class TruthOrDareAddPLayersAdapter(
                     )
                 AddPlayersTextFieldViewHolder(binding)
             }
+
             AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_ADD_BUTTON.viewType -> {
                 val binding =
                     ItemTruthOrDareAddPlayersAddButtonBinding.inflate(
@@ -181,6 +175,7 @@ class TruthOrDareAddPLayersAdapter(
                     )
                 AddPlayersAddButtonViewHolder(binding)
             }
+
             else -> {
                 val binding =
                     ItemTruthOrDareAddPlayersBottomBinding.inflate(
@@ -200,9 +195,11 @@ class TruthOrDareAddPLayersAdapter(
                 AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_HEADER.viewType -> {
                     (holder as AddPlayersHeaderViewHolder).bind()
                 }
+
                 AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TOGGLE.viewType -> {
-                    (holder as AddPlayersToggleViewHolder).bind(item)
+                    (holder as AddPlayersSwitchViewHolder).bind()
                 }
+
                 AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD.viewType -> {
                     (holder as AddPlayersTextFieldViewHolder).bind(
                         item,
@@ -211,12 +208,15 @@ class TruthOrDareAddPLayersAdapter(
                         addPlayersTextFieldListener
                     )
                 }
+
                 AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_ADD_BUTTON.viewType -> {
                     (holder as AddPlayersAddButtonViewHolder).bind(addPLayersAddButtonListener)
                 }
+
                 AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_BOTTOM.viewType -> {
                     (holder as AddPlayersBottomViewHolder).bind(addPLayersBottomListener)
                 }
+
                 else -> {
                     // do nothing
                 }
@@ -244,6 +244,7 @@ class TruthOrDareAddPLayersAdapter(
                     AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD -> {
                         oldItem.player == newItem.player && oldItem.playerPosition == newItem.playerPosition
                     }
+
                     else -> {
                         oldItem == newItem
                     }

@@ -36,6 +36,7 @@ class TruthOrDareAddPlayersFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel.getAllPlayers()
 
         adapter = TruthOrDareAddPLayersAdapter(
@@ -83,7 +84,16 @@ class TruthOrDareAddPlayersFragment :
         viewModel.deletePlayer(player)
     }
 
-    override fun onTextFieldEnterClicked(newPlayer: TruthOrDarePlayer) {
-        viewModel.addPlayer(newPlayer)
+    override fun onUpdateTextFieldClicked(
+        playerPosition: Int,
+        player: TruthOrDarePlayer,
+        newPlayerName: String
+    ) {
+        if (newPlayerName.isEmpty()) {
+            adapter?.removeTextField(playerPosition)
+            viewModel.deletePlayer(player)
+        } else {
+            viewModel.updatePlayer(player.id, newPlayerName)
+        }
     }
 }

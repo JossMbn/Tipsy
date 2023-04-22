@@ -40,12 +40,17 @@ class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFi
 
         binding.playerField.setOnEditorActionListener { textView, actionId, event ->
             if (
-                (event != null && (event.keyCode == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) &&
-                !textView.text.isNullOrEmpty()
+                (event != null && (event.keyCode == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE))
             ) {
-                listener.onTextFieldEnterClicked(
-                    TruthOrDarePlayer(playerName = textView.text.toString())
-                )
+                item.player?.let { player ->
+                    item.playerPosition?.let { position ->
+                        listener.onUpdateTextFieldClicked(
+                            position,
+                            player,
+                            textView.text.toString()
+                        )
+                    }
+                }
                 textView.clearFocus()
                 context.hideKeyboard(view)
                 return@setOnEditorActionListener true
@@ -57,6 +62,8 @@ class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFi
             item.playerPosition?.let { position ->
                 item.player?.let { player ->
                     listener.onRemoveClicked(player, position)
+                    binding.playerField.clearFocus()
+                    context.hideKeyboard(view)
                 }
             }
         }
@@ -74,6 +81,10 @@ class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFi
 
     interface AddPlayersTextFieldListener {
         fun onRemoveClicked(player: TruthOrDarePlayer, position: Int)
-        fun onTextFieldEnterClicked(newPlayer: TruthOrDarePlayer)
+        fun onUpdateTextFieldClicked(
+            playerPosition: Int,
+            player: TruthOrDarePlayer,
+            newPlayerName: String
+        )
     }
 }
