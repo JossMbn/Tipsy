@@ -10,11 +10,32 @@
         android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_nested_dilemma_graph"
-            app:destination="@id/nested_dilemma_graph" />
+            app:destination="@id/nested_dilemma_graph"
+            app:enterAnim="@anim/from_right_to_left"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_right"
+            app:popExitAnim="@anim/from_center_to_right" />
         <action
             android:id="@+id/action_homeFragment_to_trueOrDareOnBoardingFragment"
-            app:destination="@id/nested_truth_or_dare_graph" />
+            app:destination="@id/nested_truth_or_dare_graph"
+            app:enterAnim="@anim/from_right_to_left"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_right"
+            app:popExitAnim="@anim/from_center_to_right" />
     </fragment>
+    <dialog
+        android:id="@+id/endGameDialogFragment"
+        android:name="com.jmabilon.tipsy.ui.endgame.EndGameDialogFragment"
+        android:label="EndGameDialogFragment">
+        <argument
+            android:name="subtitle"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_endGameDialogFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </dialog>
     <navigation
         android:id="@+id/nested_dilemma_graph"
         app:startDestination="@id/dilemmaOnBoardingFragment">
@@ -31,21 +52,19 @@
             android:name="com.jmabilon.tipsy.ui.dilemma.DilemmaFragment"
             android:label="DilemmaFragment">
             <action
-                android:id="@+id/action_dilemmaFragment_to_dilemmaDialogFragment"
-                app:destination="@id/dilemmaDialogFragment" />
+                android:id="@+id/action_dilemmaFragment_to_endGameDialogFragment"
+                app:destination="@id/endGameDialogFragment">
+                <argument
+                    android:name="subtitle"
+                    android:defaultValue="@null"
+                    app:argType="string"
+                    app:nullable="true" />
+            </action>
             <argument
                 android:name="dilemmaCount"
                 android:defaultValue="30"
                 app:argType="string" />
         </fragment>
-        <dialog
-            android:id="@+id/dilemmaDialogFragment"
-            android:name="com.jmabilon.tipsy.ui.dilemma.DilemmaDialogFragment"
-            android:label="DilemmaDialogFragment">
-            <action
-                android:id="@+id/action_dilemmaDialogFragment_to_homeFragment"
-                app:destination="@id/homeFragment" />
-        </dialog>
     </navigation>
     <navigation
         android:id="@+id/nested_truth_or_dare_graph"
@@ -73,6 +92,9 @@
                 app:exitAnim="@anim/from_center_to_left"
                 app:popUpTo="@id/truthOrDareFragment"
                 app:popUpToInclusive="true" />
+            <action
+                android:id="@+id/action_truthOrDareFragment_to_endGameDialogFragment"
+                app:destination="@id/endGameDialogFragment" />
         </fragment>
         <fragment
             android:id="@+id/truthOrDareAddPlayersFragment"

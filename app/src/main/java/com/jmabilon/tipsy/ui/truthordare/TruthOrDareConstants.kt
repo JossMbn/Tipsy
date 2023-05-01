@@ -10,6 +10,7 @@ interface TruthOrDareConstants {
 
     enum class Choice {
         NONE,
+        NEXT_PLAYER,
         TRUTH,
         DARE
     }

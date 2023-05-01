@@ -26,13 +26,15 @@ class TruthOrDareAddPLayersAdapter(
     private val view: View,
     private val addPLayersBottomListener: AddPlayersBottomViewHolder.AddPLayersBottomListener,
     private val addPLayersAddButtonListener: AddPlayersAddButtonViewHolder.AddPlayersAddButtonListener,
-    private val addPlayersTextFieldListener: AddPlayersTextFieldViewHolder.AddPlayersTextFieldListener
+    private val addPlayersTextFieldListener: AddPlayersTextFieldViewHolder.AddPlayersTextFieldListener,
+    private val addPLayerSwitchListener: AddPlayersSwitchViewHolder.AddPLayerSwitchListener
 ) :
     ListAdapter<AddPlayerItemViewPresentation, RecyclerView.ViewHolder>(DiffCallBack()) {
 
     fun initData(
         playerList: List<TruthOrDarePlayer>?,
-        screenDensity: Float
+        screenDensity: Float,
+        playerSettings: Boolean
     ) {
         val listLocal = mutableListOf<AddPlayerItemViewPresentation>()
         var playerPosition = 0
@@ -44,7 +46,8 @@ class TruthOrDareAddPLayersAdapter(
         )
         listLocal.add(
             AddPlayerItemViewPresentation(
-                type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TOGGLE
+                type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_SWITCH,
+                playerSettings = playerSettings
             )
         )
 
@@ -146,7 +149,7 @@ class TruthOrDareAddPLayersAdapter(
                 AddPlayersHeaderViewHolder(binding)
             }
 
-            AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TOGGLE.viewType -> {
+            AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_SWITCH.viewType -> {
                 val binding =
                     ItemTruthOrDareAddPlayersToggleBinding.inflate(
                         LayoutInflater.from(parent.context),
@@ -196,8 +199,8 @@ class TruthOrDareAddPLayersAdapter(
                     (holder as AddPlayersHeaderViewHolder).bind()
                 }
 
-                AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TOGGLE.viewType -> {
-                    (holder as AddPlayersSwitchViewHolder).bind()
+                AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_SWITCH.viewType -> {
+                    (holder as AddPlayersSwitchViewHolder).bind(item, addPLayerSwitchListener)
                 }
 
                 AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD.viewType -> {

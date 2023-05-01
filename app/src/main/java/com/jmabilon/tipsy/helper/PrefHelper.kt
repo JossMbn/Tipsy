@@ -1,36 +1,29 @@
 package com.jmabilon.tipsy.helper
 
-import android.app.Application
 import android.content.Context
-import android.content.SharedPreferences
-import com.jmabilon.tipsy.R
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import com.jmabilon.tipsy.extensions.android.getBoolean
 import com.jmabilon.tipsy.extensions.android.setBoolean
-import javax.inject.Inject
+import kotlinx.coroutines.flow.first
 
-class PrefHelper @Inject constructor(application: Application) {
+class PrefHelper(context: Context) {
 
-    init {
-        sPrefs = application.getSharedPreferences(
-            application.getString(R.string.preference_file_key),
-            Context.MODE_PRIVATE
-        )
-    }
+    private val Context.datastore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+    private val dataStore = context.datastore
 
     companion object {
-        private lateinit var sPrefs: SharedPreferences
-
         // Truth Or Dare
-        private const val TOD_PLAYER_SETTING = "TOD_PLAYER_SETTING"
+        private val TOD_PLAYER_SETTING = booleanPreferencesKey("TOD_PLAYER_SETTING")
+    }
 
-        fun init(application: Application) {
-            PrefHelper(application)
-        }
+    suspend fun setTodPlayerSetting(value: Boolean) {
+        dataStore.setBoolean(TOD_PLAYER_SETTING, value)
+    }
 
-        fun setTodPlayerSetting(value: Boolean) {
-            sPrefs.setBoolean(TOD_PLAYER_SETTING, value)
-        }
-
-        fun getTodPlayerSetting(): Boolean =
-            sPrefs.getBoolean(TOD_PLAYER_SETTING, false)
+    suspend fun getTodPlayerSetting(): Boolean {
+        return dataStore.getBoolean(TOD_PLAYER_SETTING).first()
     }
 }

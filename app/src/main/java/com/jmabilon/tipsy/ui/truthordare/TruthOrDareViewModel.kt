@@ -6,6 +6,7 @@ import com.jmabilon.tipsy.data.TruthOrDare
 import com.jmabilon.tipsy.data.dareList
 import com.jmabilon.tipsy.data.repository.ITruthOrDarePlayerRepository
 import com.jmabilon.tipsy.data.truthList
+import com.jmabilon.tipsy.helper.PrefHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,6 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TruthOrDareViewModel @Inject constructor(
+    private val prefHelper: PrefHelper,
     private val truthOrDarePlayerRepository: ITruthOrDarePlayerRepository
 ) : ViewModel() {
 
@@ -31,11 +33,11 @@ class TruthOrDareViewModel @Inject constructor(
     private var playerNameListPosition = 0
 
     fun getNextCard(playerList: List<String>?, playerChoice: TruthOrDareConstants.Choice) {
-        if (truthData.size <= truthDataPosition || dareData.size <= dareDataPosition) {
+        if (truthDataPosition >= truthData.size || dareDataPosition >= dareData.size) {
             updateIsGameFinish(true)
         } else {
             playerList?.let {
-                if (playerNameListPosition < playerList.size) {
+                if (playerNameListPosition >= playerList.size) {
                     playerNameListPosition = 0
                 }
                 when (playerChoice) {
@@ -63,6 +65,17 @@ class TruthOrDareViewModel @Inject constructor(
                         dareDataPosition += 1
                     }
 
+                    TruthOrDareConstants.Choice.NEXT_PLAYER -> {
+                        updateNextCard(
+                            TruthOrDare(
+                                type = TruthOrDareConstants.Type.NEXT_PLAYER,
+                                playerName = playerList[playerNameListPosition],
+                                playerChoice = TruthOrDareConstants.Choice.NONE,
+                                playerChoiceChallenge = null
+                            )
+                        )
+                    }
+
                     TruthOrDareConstants.Choice.NONE -> {
                         truthDataPosition += 1
                         updateNextCard(
@@ -75,7 +88,6 @@ class TruthOrDareViewModel @Inject constructor(
                         )
                     }
                 }
-                playerNameListPosition += 1
             } ?: run {
                 when (playerChoice) {
                     TruthOrDareConstants.Choice.TRUTH -> {
@@ -102,6 +114,10 @@ class TruthOrDareViewModel @Inject constructor(
                         dareDataPosition += 1
                     }
 
+                    TruthOrDareConstants.Choice.NEXT_PLAYER -> {
+                        // do nothing
+                    }
+
                     TruthOrDareConstants.Choice.NONE -> {
                         truthDataPosition += 1
                         updateNextCard(
@@ -118,9 +134,19 @@ class TruthOrDareViewModel @Inject constructor(
         }
     }
 
+    fun getTodPlayerSetting() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updatePlayerSettings(prefHelper.getTodPlayerSetting())
+        }
+    }
+
+    fun updatePlayerNamesPosition() {
+        this.playerNameListPosition += 1
+    }
+
     fun getPlayersName() {
         viewModelScope.launch(Dispatchers.IO) {
-            updatePlayersNames(truthOrDarePlayerRepository.getAllPlayersName())
+            updatePlayersNames(truthOrDarePlayerRepository.getAllPlayersName().shuffled())
         }
     }
 
@@ -133,10 +159,12 @@ class TruthOrDareViewModel @Inject constructor(
     }
 
     private fun updatePlayersNames(list: List<String>?) {
-        _uiState.update { currentState ->
-            currentState.copy(
-                playersNamesList = list?.shuffled()
-            )
+        if (!list.isNullOrEmpty()) {
+            _uiState.update { currentState ->
+                currentState.copy(
+                    playersNamesList = list
+                )
+            }
         }
     }
 
@@ -144,6 +172,14 @@ class TruthOrDareViewModel @Inject constructor(
         _uiState.update { currentState ->
             currentState.copy(
                 isGameFinish = isFinish
+            )
+        }
+    }
+
+    private fun updatePlayerSettings(settings: Boolean) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                playerSettings = settings
             )
         }
     }

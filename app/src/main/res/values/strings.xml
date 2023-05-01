@@ -1,13 +1,11 @@
 <resources>
-    // Application
-    <string name="preference_file_key">com.jmabilon.tipsy.PREFERENCE_FILE_KEY</string>
-
     // Common
     <string name="app_name">Tipsy</string>
     <string name="common_skip">Skip</string>
     <string name="common_or">OR</string>
     <string name="common_start">Start !</string>
     <string name="common_go_home">Go home</string>
+    <string name="end_game_dialog_default_subtitle">You have come to the end of the game !</string>
     <string name="common_congratulation">Congratulation !</string>
     <string name="common_dialog_description">You will be redirected to the home page where other games are waiting for you.</string>
 
@@ -29,5 +27,12 @@
     // True or Dare
     <string name="tod_title">Truth or Dare</string>
     <string name="tod_subtitle">The best game to get to know your friends better</string>
+    <string name="tod_tutorial_title">How to play</string>
+    <string name="tod_tutorial">Make a choice by clicking on Dare or Truth button below.\n\nYou can also add friends by clicking on the icon on the top right corner of the screen.</string>
     <string name="tod_hint_text_view">Player %1$s</string>
+    <string name="tod_next_player_card">Next Player:</string>
+    <string name="tod_next_player_button">Next Player</string>
+    <string name="tod_continue_button">Continue</string>
+    <string name="tod_dare">Dare</string>
+    <string name="tod_truth">Truth</string>
 </resources>

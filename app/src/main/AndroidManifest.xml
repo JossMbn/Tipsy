@@ -16,6 +16,7 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:exported="true"
+            android:theme="@style/Theme.Tipsy"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>

@@ -15,6 +15,7 @@ import com.jmabilon.tipsy.extensions.viewbinding.AbsViewBindingFragment
 import com.jmabilon.tipsy.ui.truthordare.addplayers.adapter.TruthOrDareAddPLayersAdapter
 import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersAddButtonViewHolder
 import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersBottomViewHolder
+import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersSwitchViewHolder
 import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersTextFieldViewHolder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -25,7 +26,8 @@ class TruthOrDareAddPlayersFragment :
     AbsViewBindingFragment<FragmentTruthOrDareAddPlayersBinding>(),
     AddPlayersBottomViewHolder.AddPLayersBottomListener,
     AddPlayersAddButtonViewHolder.AddPlayersAddButtonListener,
-    AddPlayersTextFieldViewHolder.AddPlayersTextFieldListener {
+    AddPlayersTextFieldViewHolder.AddPlayersTextFieldListener,
+    AddPlayersSwitchViewHolder.AddPLayerSwitchListener {
 
     private var adapter: TruthOrDareAddPLayersAdapter? = null
     private val viewModel: TruthOrDareAddPlayersViewModel by viewModels()
@@ -37,11 +39,12 @@ class TruthOrDareAddPlayersFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getAllPlayers()
+        viewModel.loadData()
 
         adapter = TruthOrDareAddPLayersAdapter(
             requireContext(),
             view,
+            this,
             this,
             this,
             this
@@ -62,9 +65,9 @@ class TruthOrDareAddPlayersFragment :
 
         viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
             .onEach { uiState ->
-                val (playerList) = uiState
+                val (playerList, playerSettings) = uiState
 
-                adapter?.initData(playerList, resources.displayMetrics.density)
+                adapter?.initData(playerList, resources.displayMetrics.density, playerSettings)
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
@@ -95,5 +98,9 @@ class TruthOrDareAddPlayersFragment :
         } else {
             viewModel.updatePlayer(player.id, newPlayerName)
         }
+    }
+
+    override fun onSwitchClicked(value: Boolean) {
+        viewModel.setPlayerSettings(value)
     }
 }

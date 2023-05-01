@@ -7,6 +7,7 @@ import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,7 +16,6 @@ import com.jmabilon.tipsy.data.TruthOrDare
 import com.jmabilon.tipsy.databinding.FragmentTruthOrDareBinding
 import com.jmabilon.tipsy.extensions.android.safeNavigation
 import com.jmabilon.tipsy.extensions.viewbinding.AbsViewBindingFragment
-import com.jmabilon.tipsy.helper.PrefHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -30,6 +30,7 @@ class TruthOrDareFragment :
     private var nextCard: TruthOrDare? = null
     private var currentCardType: TruthOrDareConstants.Type = TruthOrDareConstants.Type.TUTORIAL
     private var playerList: List<String>? = null
+    private var havePlayers: Boolean = false
 
     override fun getViewBinding(): FragmentTruthOrDareBinding {
         return FragmentTruthOrDareBinding.inflate(layoutInflater)
@@ -40,7 +41,7 @@ class TruthOrDareFragment :
         fadeOutAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out_animation)
         fadeInAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in_animation)
 
-        viewModel.getPlayersName()
+        viewModel.getTodPlayerSetting()
 
         binding.backIcon.setOnClickListener {
             performHapticFeedback()
@@ -55,17 +56,31 @@ class TruthOrDareFragment :
         }
 
         binding.truthButton.setOnClickListener {
-            viewModel.getNextCard(playerList?.toList(), TruthOrDareConstants.Choice.TRUTH)
+            allButtonStatus(false)
+            viewModel.getNextCard(playerList, TruthOrDareConstants.Choice.TRUTH)
             truthOrDareButtonLogic()
         }
 
         binding.dareButton.setOnClickListener {
-            viewModel.getNextCard(playerList?.toList(), TruthOrDareConstants.Choice.DARE)
+            allButtonStatus(false)
+            viewModel.getNextCard(playerList, TruthOrDareConstants.Choice.DARE)
             truthOrDareButtonLogic()
         }
 
+        binding.nextPlayerButton.setOnClickListener {
+            allButtonStatus(false)
+            viewModel.updatePlayerNamesPosition()
+            viewModel.getNextCard(playerList, TruthOrDareConstants.Choice.NEXT_PLAYER)
+            nextPlayerButtonLogic()
+        }
+
         binding.skipTutorialButton.setOnClickListener {
-            viewModel.getNextCard(playerList?.toList(), TruthOrDareConstants.Choice.TRUTH)
+            allButtonStatus(false)
+            if (havePlayers) {
+                viewModel.getNextCard(playerList, TruthOrDareConstants.Choice.NEXT_PLAYER)
+            } else {
+                viewModel.getNextCard(playerList, TruthOrDareConstants.Choice.TRUTH)
+            }
             skipTutorialButtonLogic()
         }
     }
@@ -73,23 +88,37 @@ class TruthOrDareFragment :
     override fun initViewModelObservation() {
         super.initViewModelObservation()
 
-        viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { uiState ->
-            val (nextCard, playersNameList, isGameFinish) = uiState
+        viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.RESUMED)
+            .onEach { uiState ->
+                val (nextCard, playersNameList, isGameFinish, playerSettings) = uiState
 
-            nextCard?.let {
-                this.nextCard = it
-            }
-            if (isGameFinish) {
-                // go to end game card
-            }
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
+                if (playerSettings) {
+                    viewModel.getPlayersName()
+                }
+                playersNameList?.let { playersList ->
+                    if (playersList.isNotEmpty()) {
+                        this.playerList = playersList
+                        havePlayers = true
+                    }
+                }
+                nextCard?.let {
+                    this.nextCard = it
+                }
+                if (isGameFinish) {
+                    val directions =
+                        TruthOrDareFragmentDirections.actionTruthOrDareFragmentToEndGameDialogFragment()
+                    safeNavigation(directions)
+                }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun truthOrDareButtonLogic() {
         if (currentCardType == TruthOrDareConstants.Type.GAME) {
             binding.gameCardContainer.startAnimation(fadeOutAnim)
         } else {
-            binding.nextPlayerContainer.startAnimation(fadeOutAnim)
+            listOf(binding.nextPlayerContainer, binding.truthButton, binding.dareButton).onEach {
+                it.startAnimation(fadeOutAnim)
+            }
         }
         when (nextCard?.type) {
             TruthOrDareConstants.Type.NEXT_PLAYER -> {
@@ -105,6 +134,7 @@ class TruthOrDareFragment :
                             binding.nextPlayerContainer.startAnimation(fadeInAnim)
                             binding.nextPlayerContainer.visibility = View.VISIBLE
                             currentCardType = TruthOrDareConstants.Type.NEXT_PLAYER
+                            allButtonStatus(true)
                         }
 
                         override fun onAnimationRepeat(p0: Animation?) {
@@ -115,27 +145,57 @@ class TruthOrDareFragment :
             }
 
             TruthOrDareConstants.Type.GAME -> {
-                fadeOutAnim?.setAnimationListener(object : AnimationListener {
-                    override fun onAnimationStart(p0: Animation?) {
-                        // do nothing
-                    }
-
-                    override fun onAnimationEnd(p0: Animation?) {
-                        setNextCard()
-                        if (currentCardType == TruthOrDareConstants.Type.NEXT_PLAYER) {
-                            binding.nextPlayerContainer.visibility = View.GONE
-                        } else {
-                            binding.gameCardContainer.visibility = View.GONE
+                if (havePlayers) {
+                    fadeOutAnim?.setAnimationListener(object : AnimationListener {
+                        override fun onAnimationStart(p0: Animation?) {
+                            // do nothing
                         }
-                        binding.gameCardContainer.startAnimation(fadeInAnim)
-                        binding.gameCardContainer.visibility = View.VISIBLE
-                        currentCardType = TruthOrDareConstants.Type.GAME
-                    }
 
-                    override fun onAnimationRepeat(p0: Animation?) {
-                        // do nothing
-                    }
-                })
+                        override fun onAnimationEnd(p0: Animation?) {
+                            setNextCard()
+                            if (currentCardType == TruthOrDareConstants.Type.NEXT_PLAYER) {
+                                binding.nextPlayerContainer.visibility = View.GONE
+                                binding.truthButton.visibility = View.GONE
+                                binding.dareButton.visibility = View.GONE
+                                binding.nextPlayerButton.startAnimation(fadeInAnim)
+                                binding.nextPlayerButton.visibility = View.VISIBLE
+                            } else {
+                                binding.gameCardContainer.visibility = View.GONE
+                            }
+                            binding.gameCardContainer.startAnimation(fadeInAnim)
+                            binding.gameCardContainer.visibility = View.VISIBLE
+                            currentCardType = TruthOrDareConstants.Type.GAME
+                            allButtonStatus(true)
+                        }
+
+                        override fun onAnimationRepeat(p0: Animation?) {
+                            // do nothing
+                        }
+                    })
+                } else {
+                    fadeOutAnim?.setAnimationListener(object : AnimationListener {
+                        override fun onAnimationStart(p0: Animation?) {
+                            // do nothing
+                        }
+
+                        override fun onAnimationEnd(p0: Animation?) {
+                            setNextCard()
+                            if (currentCardType == TruthOrDareConstants.Type.NEXT_PLAYER) {
+                                binding.nextPlayerContainer.visibility = View.GONE
+                            } else {
+                                binding.gameCardContainer.visibility = View.GONE
+                            }
+                            binding.gameCardContainer.startAnimation(fadeInAnim)
+                            binding.gameCardContainer.visibility = View.VISIBLE
+                            currentCardType = TruthOrDareConstants.Type.GAME
+                            allButtonStatus(true)
+                        }
+
+                        override fun onAnimationRepeat(p0: Animation?) {
+                            // do nothing
+                        }
+                    })
+                }
             }
 
             TruthOrDareConstants.Type.TUTORIAL,
@@ -149,7 +209,7 @@ class TruthOrDareFragment :
         listOf(binding.tutorialContainer, binding.skipTutorialButton).onEach {
             it.startAnimation(fadeOutAnim)
         }
-        if (PrefHelper.getTodPlayerSetting()) {
+        if (havePlayers) {
             playerList?.let {
                 currentCardType = TruthOrDareConstants.Type.NEXT_PLAYER
                 fadeOutAnim?.setAnimationListener(object : AnimationListener {
@@ -161,6 +221,7 @@ class TruthOrDareFragment :
                         setNextCard()
                         binding.tutorialContainer.visibility = View.GONE
                         binding.skipTutorialButton.visibility = View.GONE
+                        binding.nextPlayerName.text = nextCard?.playerName
                         listOf(
                             binding.nextPlayerContainer,
                             binding.dareButton,
@@ -171,6 +232,7 @@ class TruthOrDareFragment :
                         binding.nextPlayerContainer.visibility = View.VISIBLE
                         binding.dareButton.visibility = View.VISIBLE
                         binding.truthButton.visibility = View.VISIBLE
+                        allButtonStatus(true)
                     }
 
                     override fun onAnimationRepeat(p0: Animation?) {
@@ -199,6 +261,43 @@ class TruthOrDareFragment :
                     binding.gameCardContainer.visibility = View.VISIBLE
                     binding.dareButton.visibility = View.VISIBLE
                     binding.truthButton.visibility = View.VISIBLE
+                    allButtonStatus(true)
+                }
+
+                override fun onAnimationRepeat(p0: Animation?) {
+                    // do nothing
+                }
+            })
+        }
+    }
+
+    private fun nextPlayerButtonLogic() {
+        listOf(binding.gameCardContainer, binding.nextPlayerButton).onEach {
+            it.startAnimation(fadeOutAnim)
+        }
+        playerList?.let {
+            currentCardType = TruthOrDareConstants.Type.NEXT_PLAYER
+            fadeOutAnim?.setAnimationListener(object : AnimationListener {
+                override fun onAnimationStart(p0: Animation?) {
+                    // do nothing
+                }
+
+                override fun onAnimationEnd(p0: Animation?) {
+                    setNextCard()
+                    binding.gameCardContainer.visibility = View.GONE
+                    binding.nextPlayerButton.visibility = View.GONE
+                    binding.nextPlayerName.text = nextCard?.playerName
+                    listOf(
+                        binding.nextPlayerContainer,
+                        binding.dareButton,
+                        binding.truthButton
+                    ).onEach {
+                        it.startAnimation(fadeInAnim)
+                    }
+                    binding.nextPlayerContainer.visibility = View.VISIBLE
+                    binding.dareButton.visibility = View.VISIBLE
+                    binding.truthButton.visibility = View.VISIBLE
+                    allButtonStatus(true)
                 }
 
                 override fun onAnimationRepeat(p0: Animation?) {
@@ -228,13 +327,13 @@ class TruthOrDareFragment :
                             requireContext(),
                             R.drawable.background_blure_blue_35_rounded
                         )
-                        binding.gamePlayerChoice.text = "Truth"
+                        binding.gamePlayerChoice.text = getString(R.string.tod_truth)
                     } else {
                         binding.gamePlayerChoice.background = ContextCompat.getDrawable(
                             requireContext(),
                             R.drawable.background_blure_red_35_rounded
                         )
-                        binding.gamePlayerChoice.text = "Dare"
+                        binding.gamePlayerChoice.text = getString(R.string.tod_dare)
                     }
                 }
 
@@ -243,5 +342,13 @@ class TruthOrDareFragment :
                 }
             }
         }
+    }
+
+    private fun allButtonStatus(status: Boolean) {
+        binding.addPlayersIcon.isClickable = status
+        binding.truthButton.isClickable = status
+        binding.dareButton.isClickable = status
+        binding.nextPlayerButton.isClickable = status
+        binding.skipTutorialButton.isClickable = status
     }
 }

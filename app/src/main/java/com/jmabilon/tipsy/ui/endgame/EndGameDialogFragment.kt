@@ -1,4 +1,4 @@
-package com.jmabilon.tipsy.ui.dilemma
+package com.jmabilon.tipsy.ui.endgame
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -7,15 +7,20 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.KeyEvent
 import androidx.fragment.app.DialogFragment
-import com.jmabilon.tipsy.databinding.DilemmaEndGameDialogBinding
+import androidx.navigation.fragment.navArgs
+import com.jmabilon.tipsy.databinding.EndGameDialogBinding
 import com.jmabilon.tipsy.extensions.android.safeNavigation
 
-class DilemmaDialogFragment: DialogFragment() {
+class EndGameDialogFragment : DialogFragment() {
 
-    private var binding: DilemmaEndGameDialogBinding? = null
+    private var binding: EndGameDialogBinding? = null
+    private val args: EndGameDialogFragmentArgs by navArgs()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = DilemmaEndGameDialogBinding.inflate(layoutInflater)
+        binding = EndGameDialogBinding.inflate(layoutInflater)
+        args.subtitle?.let { subtitle ->
+            binding?.dialogSubtitle?.text = subtitle
+        }
         val dialog = AlertDialog.Builder(requireActivity())
             .setView(binding?.root)
             .create()
@@ -29,7 +34,8 @@ class DilemmaDialogFragment: DialogFragment() {
         }
 
         binding?.dialogButton?.setOnClickListener {
-            val directions = DilemmaDialogFragmentDirections.actionDilemmaDialogFragmentToHomeFragment()
+            val directions =
+                EndGameDialogFragmentDirections.actionEndGameDialogFragmentToHomeFragment()
             safeNavigation(directions)
         }
 

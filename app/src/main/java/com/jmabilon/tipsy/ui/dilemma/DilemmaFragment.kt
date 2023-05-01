@@ -58,7 +58,9 @@ class DilemmaFragment :
                 binding.secondCard.setCardText(dilemma?.secondDilemma?.replaceFirstChar(Char::uppercaseChar))
                 if (isGameFinish) {
                     val directions =
-                        DilemmaFragmentDirections.actionDilemmaFragmentToDilemmaDialogFragment()
+                        DilemmaFragmentDirections.actionDilemmaFragmentToEndGameDialogFragment(
+                            subtitle = getString(R.string.dilemma_dialog_subtitle)
+                        )
                     safeNavigation(directions)
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)

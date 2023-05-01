@@ -2,6 +2,7 @@ package com.jmabilon.tipsy.di
 
 import android.content.Context
 import com.jmabilon.tipsy.BaseApplication
+import com.jmabilon.tipsy.helper.PrefHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +16,13 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideApplication(@ApplicationContext app: Context): BaseApplication {
-        return app as BaseApplication
+    fun provideApplication(@ApplicationContext context: Context): BaseApplication {
+        return context as BaseApplication
+    }
+
+    @Singleton
+    @Provides
+    fun provideDataStore(@ApplicationContext context: Context): PrefHelper {
+        return PrefHelper(context)
     }
 }
