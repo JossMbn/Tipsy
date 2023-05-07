@@ -10,7 +10,9 @@ interface ITruthOrDarePlayerRepository {
 
     suspend fun addPlayer(player: TruthOrDarePlayer)
 
-    suspend fun deletePlayer(player: TruthOrDarePlayer)
+    suspend fun deletePlayer(playerId: Int)
+
+    suspend fun deletePlayerFromList(playersIdList: List<Int>)
 
     suspend fun updatePlayer(playerId: Int, newPlayerName: String)
 }

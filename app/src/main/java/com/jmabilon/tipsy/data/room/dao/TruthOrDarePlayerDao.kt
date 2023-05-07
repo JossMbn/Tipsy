@@ -15,8 +15,11 @@ interface TruthOrDarePlayerDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertPlayer(player: TruthOrDarePlayer)
 
-    @Delete
-    suspend fun deletePlayer(player: TruthOrDarePlayer)
+    @Query("DELETE FROM truth_or_dare_player_table WHERE id=:playerId")
+    suspend fun deletePlayer(playerId: Int)
+
+    @Query("DELETE FROM truth_or_dare_player_table WHERE id IN (:playersIdList)")
+    suspend fun deletePlayerFromList(playersIdList: List<Int>)
 
     @Query("UPDATE truth_or_dare_player_table SET player_name=:newPlayerName WHERE id=:playerId")
     suspend fun updatePlayer(playerId: Int, newPlayerName: String)

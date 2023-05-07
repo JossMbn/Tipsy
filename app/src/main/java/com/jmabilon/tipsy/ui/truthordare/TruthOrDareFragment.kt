@@ -92,8 +92,11 @@ class TruthOrDareFragment :
             .onEach { uiState ->
                 val (nextCard, playersNameList, isGameFinish, playerSettings) = uiState
 
-                if (playerSettings) {
-                    viewModel.getPlayersName()
+                playerSettings?.let {
+                    if (it) {
+                        viewModel.getPlayersName()
+                        viewModel.resetTodPlayerSetting()
+                    }
                 }
                 playersNameList?.let { playersList ->
                     if (playersList.isNotEmpty()) {

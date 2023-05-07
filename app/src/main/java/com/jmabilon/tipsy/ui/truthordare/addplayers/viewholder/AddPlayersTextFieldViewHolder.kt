@@ -27,15 +27,6 @@ class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFi
         item.playerPosition?.let {
             binding.playerField.hint =
                 context.getString(R.string.tod_hint_text_view, (it + 1).toString())
-            if (item.playerPosition == 0) {
-                item.screenDensity?.let { scale ->
-                    val paddingLeft = (30 * scale + 0.5f).toInt()
-                    val paddingRight = (30 * scale + 0.5f).toInt()
-                    val paddingTop = (20 * scale + 0.5f).toInt()
-
-                    binding.root.setPadding(paddingLeft, paddingTop, paddingRight, 0)
-                }
-            }
         }
 
         binding.playerField.setOnEditorActionListener { textView, actionId, event ->
@@ -48,6 +39,7 @@ class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFi
                             position,
                             player,
                             textView.text.toString()
+                                .replaceFirstChar { it.uppercase() }
                         )
                     }
                 }
@@ -61,26 +53,16 @@ class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFi
         binding.removeButton.setOnClickListener {
             item.playerPosition?.let { position ->
                 item.player?.let { player ->
-                    listener.onRemoveClicked(player, position)
+                    listener.onRemoveFromAdapterClicked(player.id, position)
                     binding.playerField.clearFocus()
                     context.hideKeyboard(view)
                 }
             }
         }
-
-        hideRemoveButtonIfNeeded(item)
-    }
-
-    private fun hideRemoveButtonIfNeeded(item: AddPlayerItemViewPresentation) {
-        if ((item.playerPosition == 0 || item.playerPosition == 1) && binding.playerField.text.isNullOrEmpty()) {
-            binding.removeButton.visibility = View.GONE
-        } else {
-            binding.removeButton.visibility = View.VISIBLE
-        }
     }
 
     interface AddPlayersTextFieldListener {
-        fun onRemoveClicked(player: TruthOrDarePlayer, position: Int)
+        fun onRemoveFromAdapterClicked(playerId: Int, position: Int)
         fun onUpdateTextFieldClicked(
             playerPosition: Int,
             player: TruthOrDarePlayer,

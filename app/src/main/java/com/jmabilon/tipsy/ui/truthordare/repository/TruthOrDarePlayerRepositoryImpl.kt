@@ -16,8 +16,12 @@ class TruthOrDarePlayerRepositoryImpl @Inject constructor(
         truthOrDarePlayerDao.insertPlayer(player)
     }
 
-    override suspend fun deletePlayer(player: TruthOrDarePlayer) {
-        truthOrDarePlayerDao.deletePlayer(player)
+    override suspend fun deletePlayer(playerId: Int) {
+        truthOrDarePlayerDao.deletePlayer(playerId)
+    }
+
+    override suspend fun deletePlayerFromList(playersIdList: List<Int>) {
+        truthOrDarePlayerDao.deletePlayerFromList(playersIdList)
     }
 
     override suspend fun updatePlayer(playerId: Int, newPlayerName: String) {

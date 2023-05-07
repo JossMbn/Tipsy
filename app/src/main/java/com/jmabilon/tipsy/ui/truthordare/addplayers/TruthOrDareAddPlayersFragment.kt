@@ -57,6 +57,7 @@ class TruthOrDareAddPlayersFragment :
                 false
             )
             adapter = this@TruthOrDareAddPlayersFragment.adapter
+            itemAnimator = null
         }
     }
 
@@ -71,7 +72,7 @@ class TruthOrDareAddPlayersFragment :
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    override fun onBackClicked() {
+    private fun redirectToGame() {
         val directions = TruthOrDareAddPlayersFragmentDirections
             .actionTruthOrDareAddPlayersFragmentToTruthOrDareFragment()
         safeNavigation(directions)
@@ -82,9 +83,14 @@ class TruthOrDareAddPlayersFragment :
         viewModel.addPlayer(newPlayer)
     }
 
-    override fun onRemoveClicked(player: TruthOrDarePlayer, position: Int) {
+    override fun onRemoveFromAdapterClicked(playerId: Int, position: Int) {
         adapter?.removeTextField(position)
-        viewModel.deletePlayer(player)
+        viewModel.updatePlayersIdList(playerId)
+    }
+
+    override fun onRemovePlayersListClicked() {
+        viewModel.deletePlayer()
+        redirectToGame()
     }
 
     override fun onUpdateTextFieldClicked(
@@ -94,7 +100,7 @@ class TruthOrDareAddPlayersFragment :
     ) {
         if (newPlayerName.isEmpty()) {
             adapter?.removeTextField(playerPosition)
-            viewModel.deletePlayer(player)
+            viewModel.updatePlayersIdList(player.id)
         } else {
             viewModel.updatePlayer(player.id, newPlayerName)
         }

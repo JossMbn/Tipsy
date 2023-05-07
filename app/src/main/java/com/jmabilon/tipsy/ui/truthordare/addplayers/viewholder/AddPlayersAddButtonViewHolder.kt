@@ -16,7 +16,9 @@ class AddPlayersAddButtonViewHolder(val binding: ItemTruthOrDareAddPlayersAddBut
                 !textView.text.isNullOrEmpty()
             ) {
                 listener.onAddButtonClicked(
-                    TruthOrDarePlayer(playerName = textView.text.toString())
+                    TruthOrDarePlayer(
+                        playerName = textView.text.toString()
+                            .replaceFirstChar { it.uppercase() })
                 )
                 binding.addPlayerField.text = null
                 return@setOnEditorActionListener true

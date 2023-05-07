@@ -8,6 +8,7 @@
     android:background="@android:color/transparent"
     android:paddingHorizontal="30dp"
     android:paddingTop="20dp"
+    android:paddingBottom="15dp"
     tools:background="@drawable/truth_or_dare_first_gradiant">
 
     <androidx.appcompat.widget.AppCompatTextView

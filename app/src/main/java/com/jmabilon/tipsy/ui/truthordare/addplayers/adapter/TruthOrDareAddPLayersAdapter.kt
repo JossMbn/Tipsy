@@ -123,7 +123,17 @@ class TruthOrDareAddPLayersAdapter(
 
             if (copyItem.type == AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD) {
                 if (copyItem.playerPosition != position) {
-                    listLocal.add(copyItem)
+                    copyItem.playerPosition?.let {
+                        if (it > position) {
+                            listLocal.add(
+                                copyItem.apply {
+                                    playerPosition = playerPosition?.minus(1)
+                                }
+                            )
+                        } else {
+                            listLocal.add(copyItem)
+                        }
+                    }
                 }
             } else {
                 listLocal.add(copyItem)

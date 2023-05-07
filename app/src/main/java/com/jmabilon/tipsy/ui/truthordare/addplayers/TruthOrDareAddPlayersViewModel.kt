@@ -2,9 +2,9 @@ package com.jmabilon.tipsy.ui.truthordare.addplayers
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jmabilon.tipsy.ui.truthordare.repository.ITruthOrDarePlayerRepository
 import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
 import com.jmabilon.tipsy.helper.PrefHelper
+import com.jmabilon.tipsy.ui.truthordare.repository.ITruthOrDarePlayerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,6 +20,7 @@ class TruthOrDareAddPlayersViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var _uiState = MutableStateFlow(value = TruthOrDareAddPlayersUiState())
+    private var playersIdList = mutableListOf<Int>()
 
     val uiState: StateFlow<TruthOrDareAddPlayersUiState>
         get() = _uiState
@@ -41,10 +42,20 @@ class TruthOrDareAddPlayersViewModel @Inject constructor(
         }
     }
 
-    fun deletePlayer(player: TruthOrDarePlayer) {
+    fun deletePlayer() {
         viewModelScope.launch(Dispatchers.IO) {
-            truthOrDarePlayerRepository.deletePlayer(player)
+            if (playersIdList.isNotEmpty()) {
+                if (playersIdList.size > 1) {
+                    truthOrDarePlayerRepository.deletePlayerFromList(playersIdList)
+                } else {
+                    truthOrDarePlayerRepository.deletePlayer(playersIdList.first())
+                }
+            }
         }
+    }
+
+    fun updatePlayersIdList(playerId: Int) {
+        this.playersIdList.add(playerId)
     }
 
     fun updatePlayer(playerId: Int, newPlayerName: String) {

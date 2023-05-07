@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jmabilon.tipsy.data.TruthOrDare
 import com.jmabilon.tipsy.data.dareList
-import com.jmabilon.tipsy.ui.truthordare.repository.ITruthOrDarePlayerRepository
 import com.jmabilon.tipsy.data.truthList
 import com.jmabilon.tipsy.helper.PrefHelper
+import com.jmabilon.tipsy.ui.truthordare.repository.ITruthOrDarePlayerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,8 +26,8 @@ class TruthOrDareViewModel @Inject constructor(
     val uiState: StateFlow<TruthOrDareUiState>
         get() = _uiState
 
-    private val dareData: List<String> = dareList
-    private val truthData: List<String> = truthList
+    private val dareData: List<String> = dareList.shuffled()
+    private val truthData: List<String> = truthList.shuffled()
     private var dareDataPosition = 0
     private var truthDataPosition = 0
     private var playerNameListPosition = 0
@@ -140,6 +140,12 @@ class TruthOrDareViewModel @Inject constructor(
         }
     }
 
+    fun resetTodPlayerSetting() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updatePlayerSettings(null)
+        }
+    }
+
     fun updatePlayerNamesPosition() {
         this.playerNameListPosition += 1
     }
@@ -176,7 +182,7 @@ class TruthOrDareViewModel @Inject constructor(
         }
     }
 
-    private fun updatePlayerSettings(settings: Boolean) {
+    private fun updatePlayerSettings(settings: Boolean?) {
         _uiState.update { currentState ->
             currentState.copy(
                 playerSettings = settings
