@@ -21,7 +21,7 @@ import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersHeaderV
 import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersSwitchViewHolder
 import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersTextFieldViewHolder
 
-class TruthOrDareAddPLayersAdapter(
+class TruthOrDareAddPlayersAdapter(
     private val context: Context,
     private val view: View,
     private val addPLayersBottomListener: AddPlayersBottomViewHolder.AddPLayersBottomListener,
@@ -38,6 +38,7 @@ class TruthOrDareAddPLayersAdapter(
     ) {
         val listLocal = mutableListOf<AddPlayerItemViewPresentation>()
         var playerPosition = 0
+        val playersNameList = mutableListOf<String>()
 
         listLocal.add(
             AddPlayerItemViewPresentation(
@@ -53,6 +54,9 @@ class TruthOrDareAddPLayersAdapter(
 
         playerList?.let {
             for (item in it) {
+                item.playerName?.let { name ->
+                    playersNameList.add(name)
+                }
                 listLocal.add(
                     AddPlayerItemViewPresentation(
                         type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD,
@@ -67,7 +71,8 @@ class TruthOrDareAddPLayersAdapter(
 
         listLocal.add(
             AddPlayerItemViewPresentation(
-                type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_ADD_BUTTON
+                type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_ADD_BUTTON,
+                playersNameList = playersNameList
             )
         )
 
@@ -104,6 +109,7 @@ class TruthOrDareAddPLayersAdapter(
                         playerPosition = playerPosition + 1
                     )
                 )
+                copyItem.playersNameList?.add(newPlayer.playerName.toString())
                 listLocal.add(copyItem)
             } else {
                 listLocal.add(copyItem)
@@ -115,7 +121,7 @@ class TruthOrDareAddPLayersAdapter(
         )
     }
 
-    fun removeTextField(position: Int) {
+    fun removeTextField(playerName: String, position: Int) {
         val listLocal = mutableListOf<AddPlayerItemViewPresentation>()
 
         for (item in currentList.toList()) {
@@ -135,6 +141,9 @@ class TruthOrDareAddPLayersAdapter(
                         }
                     }
                 }
+            } else if (copyItem.type == AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_ADD_BUTTON) {
+                copyItem.playersNameList?.remove(playerName)
+                listLocal.add(copyItem)
             } else {
                 listLocal.add(copyItem)
             }
@@ -223,7 +232,10 @@ class TruthOrDareAddPLayersAdapter(
                 }
 
                 AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_ADD_BUTTON.viewType -> {
-                    (holder as AddPlayersAddButtonViewHolder).bind(addPLayersAddButtonListener)
+                    (holder as AddPlayersAddButtonViewHolder).bind(
+                        item,
+                        addPLayersAddButtonListener
+                    )
                 }
 
                 AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_BOTTOM.viewType -> {

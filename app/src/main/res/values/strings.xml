@@ -35,4 +35,5 @@
     <string name="tod_continue_button">Continue</string>
     <string name="tod_dare">Dare</string>
     <string name="tod_truth">Truth</string>
+    <string name="tod_error_player_already_exist">Player already exist.</string>
 </resources>

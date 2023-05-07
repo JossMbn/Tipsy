@@ -28,4 +28,8 @@
 
     <!-- Status -->
     <color name="green">#65ab22</color>
+    <color name="red">#D0342C</color>
+
+    <!-- Status -->
+    <color name="translucent">#00FFFFFF</color>
 </resources>

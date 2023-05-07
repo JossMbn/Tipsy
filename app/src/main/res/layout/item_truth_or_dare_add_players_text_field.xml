@@ -10,17 +10,15 @@
     android:paddingTop="5dp"
     tools:background="@drawable/truth_or_dare_first_gradiant">
 
-    <EditText
+    <TextView
         android:id="@+id/player_field"
         style="@style/TodEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="test"
         android:background="@drawable/background_edit_text_blure_white_60_rounded"
+        android:clickable="false"
         android:ellipsize="end"
-        android:focusable="true"
-        android:imeOptions="actionDone"
-        android:inputType="text"
         android:paddingStart="20dp"
         android:paddingEnd="50dp"
         android:textColor="@color/black"
