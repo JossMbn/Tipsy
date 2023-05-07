@@ -1,10 +1,10 @@
-package com.jmabilon.tipsy.data.repository
+package com.jmabilon.tipsy.ui.truthordare.repository
 
 import com.jmabilon.tipsy.data.room.dao.TruthOrDarePlayerDao
 import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
 import javax.inject.Inject
 
-class TruthOrDarePLayerRepositoryImpl @Inject constructor(
+class TruthOrDarePlayerRepositoryImpl @Inject constructor(
     private val truthOrDarePlayerDao: TruthOrDarePlayerDao
 ) : ITruthOrDarePlayerRepository {
 

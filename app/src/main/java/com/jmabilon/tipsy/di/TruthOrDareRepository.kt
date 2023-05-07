@@ -1,8 +1,8 @@
 package com.jmabilon.tipsy.di
 
 import android.content.Context
-import com.jmabilon.tipsy.data.repository.ITruthOrDarePlayerRepository
-import com.jmabilon.tipsy.data.repository.TruthOrDarePLayerRepositoryImpl
+import com.jmabilon.tipsy.ui.truthordare.repository.ITruthOrDarePlayerRepository
+import com.jmabilon.tipsy.ui.truthordare.repository.TruthOrDarePlayerRepositoryImpl
 import com.jmabilon.tipsy.data.room.dao.TruthOrDarePlayerDao
 import com.jmabilon.tipsy.data.room.database.TruthOrDarePlayerDatabase
 import dagger.Module
@@ -29,6 +29,6 @@ object TruthOrDareRepository {
     fun provideTruthOrdDareRepository(
         truthOrDarePlayerDao: TruthOrDarePlayerDao
     ): ITruthOrDarePlayerRepository {
-        return TruthOrDarePLayerRepositoryImpl(truthOrDarePlayerDao)
+        return TruthOrDarePlayerRepositoryImpl(truthOrDarePlayerDao)
     }
 }

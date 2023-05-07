@@ -1,4 +1,4 @@
-package com.jmabilon.tipsy.data.repository
+package com.jmabilon.tipsy.ui.truthordare.repository
 
 import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
 

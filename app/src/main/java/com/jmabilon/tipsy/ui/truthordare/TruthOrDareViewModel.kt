@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jmabilon.tipsy.data.TruthOrDare
 import com.jmabilon.tipsy.data.dareList
-import com.jmabilon.tipsy.data.repository.ITruthOrDarePlayerRepository
+import com.jmabilon.tipsy.ui.truthordare.repository.ITruthOrDarePlayerRepository
 import com.jmabilon.tipsy.data.truthList
 import com.jmabilon.tipsy.helper.PrefHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
