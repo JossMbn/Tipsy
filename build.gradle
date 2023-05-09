@@ -1,7 +1,7 @@
 buildscript {
     ext {
         datastore_version = '1.0.0'
-        fragment_version = '1.5.6'
+        fragment_version = '1.5.7'
         nav_version = '2.5.3'
         room_version = '2.5.1'
         hilt_version = '2.45'

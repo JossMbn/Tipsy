@@ -36,4 +36,8 @@
     <string name="tod_dare">Dare</string>
     <string name="tod_truth">Truth</string>
     <string name="tod_error_player_already_exist">Player already exist.</string>
+
+    // Most likely to
+    <string name="mlt_title">Who is most likely to…</string>
+    <string name="mlt_subtitle">The best game to get to know your friends better</string>
 </resources>

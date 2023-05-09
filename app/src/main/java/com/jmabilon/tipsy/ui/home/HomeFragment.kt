@@ -26,5 +26,10 @@ class HomeFragment : AbsViewBindingFragment<FragmentHomeBinding>() {
                 HomeFragmentDirections.actionHomeFragmentToTrueOrDareOnBoardingFragment()
             safeNavigation(directions)
         }
+
+        binding.mostLikelyToGameButton.setOnClickListener {
+            val directions = HomeFragmentDirections.actionHomeFragmentToNestedMostLikelyToGraph()
+            safeNavigation(directions)
+        }
     }
 }

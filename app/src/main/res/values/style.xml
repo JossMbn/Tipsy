@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="CTA" parent="Museo.Semibold.16">
         <item name="android:paddingVertical">20dp</item>
         <item name="android:paddingHorizontal">10dp</item>
@@ -109,6 +110,10 @@
         <item name="android:textSize">25sp</item>
     </style>
 
+    <style name="Museo.Bold.28">
+        <item name="android:textSize">28sp</item>
+    </style>
+
     <style name="Museo.Bold.30">
         <item name="android:textSize">30sp</item>
     </style>
@@ -138,8 +143,12 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="Museo.Extrabold.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <style name="Museo.Extrabold.30">
         <item name="android:textSize">30sp</item>
     </style>
-    
+
 </resources>
