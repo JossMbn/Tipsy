@@ -29,6 +29,13 @@
             app:exitAnim="@anim/from_center_to_left"
             app:popEnterAnim="@anim/from_left_to_right"
             app:popExitAnim="@anim/from_center_to_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_nested_never_have_i_ever_graph"
+            app:destination="@id/nested_never_have_i_ever_graph"
+            app:enterAnim="@anim/from_right_to_left"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_right"
+            app:popExitAnim="@anim/from_center_to_right" />
     </fragment>
     <dialog
         android:id="@+id/endGameDialogFragment"
@@ -118,7 +125,8 @@
                 app:popUpToInclusive="true" />
         </fragment>
     </navigation>
-    <navigation android:id="@+id/nested_most_likely_to_graph"
+    <navigation
+        android:id="@+id/nested_most_likely_to_graph"
         app:startDestination="@id/mltOnBoardingFragment">
         <fragment
             android:id="@+id/mltOnBoardingFragment"
@@ -126,6 +134,18 @@
             android:label="MltOnBoardingFragment">
             <action
                 android:id="@+id/action_mltOnBoardingFragment_to_endGameDialogFragment"
+                app:destination="@id/endGameDialogFragment" />
+        </fragment>
+    </navigation>
+    <navigation
+        android:id="@+id/nested_never_have_i_ever_graph"
+        app:startDestination="@id/neverHaveIEverFragment">
+        <fragment
+            android:id="@+id/neverHaveIEverFragment"
+            android:name="com.jmabilon.tipsy.ui.neverhaveiever.NeverHaveIEverFragment"
+            android:label="NeverHaveIEverFragment">
+            <action
+                android:id="@+id/action_neverHaveIEverFragment_to_endGameDialogFragment"
                 app:destination="@id/endGameDialogFragment" />
         </fragment>
     </navigation>

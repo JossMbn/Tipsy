@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-class MltViewModel : ViewModel() {
+class MostLikelyToViewModel : ViewModel() {
 
     private var _uiState = MutableStateFlow(value = MostLikelyTo())
 

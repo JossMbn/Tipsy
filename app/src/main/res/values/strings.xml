@@ -39,5 +39,7 @@
 
     // Most likely to
     <string name="mlt_title">Who is most likely to…</string>
-    <string name="mlt_subtitle">The best game to get to know your friends better</string>
+
+    // Most likely to
+    <string name="nhie_title">Never have I ever…</string>
 </resources>

@@ -33,4 +33,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/true_or_dare_game_button" />
 
+    <Button
+        android:id="@+id/Never_have_i_ever_game_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Never have i ever"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/most_likely_to_game_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

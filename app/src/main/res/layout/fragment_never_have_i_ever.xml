@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/most_likely_to_gradiant">
+    android:background="@drawable/never_have_i_ever_gradiant">
 
     <LinearLayout
         android:id="@+id/header_component"
@@ -104,7 +104,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:riveResource="@raw/question_mark_mlt_animation" />
+                    app:riveResource="@raw/question_mark_nhie_animation" />
 
                 <TextView
                     android:id="@+id/title"
@@ -114,7 +114,7 @@
                     android:layout_marginTop="30dp"
                     android:gravity="center"
                     android:paddingHorizontal="15dp"
-                    android:text="@string/mlt_title"
+                    android:text="@string/nhie_title"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

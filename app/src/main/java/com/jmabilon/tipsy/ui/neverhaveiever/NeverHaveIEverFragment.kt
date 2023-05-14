@@ -1,4 +1,4 @@
-package com.jmabilon.tipsy.ui.mostlikelyto
+package com.jmabilon.tipsy.ui.neverhaveiever
 
 import android.os.Bundle
 import android.view.View
@@ -10,25 +10,25 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.jmabilon.tipsy.R
-import com.jmabilon.tipsy.databinding.FragmentMostLikelyToBinding
+import com.jmabilon.tipsy.databinding.FragmentNeverHaveIEverBinding
 import com.jmabilon.tipsy.extensions.android.safeNavigation
 import com.jmabilon.tipsy.extensions.viewbinding.AbsViewBindingFragment
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-class MostLikelyToFragment :
-    AbsViewBindingFragment<FragmentMostLikelyToBinding>() {
+class NeverHaveIEverFragment :
+    AbsViewBindingFragment<FragmentNeverHaveIEverBinding>() {
 
     private var toLeft: Animation? = null
     private var fromRight: Animation? = null
 
-    private val viewModel: MostLikelyToViewModel by viewModels()
+    private val viewModel: NeverHaveIEverViewModel by viewModels()
 
     private var nextSentence: String? = null
     private var isGameFinish: Boolean = false
 
-    override fun getViewBinding(): FragmentMostLikelyToBinding {
-        return FragmentMostLikelyToBinding.inflate(layoutInflater)
+    override fun getViewBinding(): FragmentNeverHaveIEverBinding {
+        return FragmentNeverHaveIEverBinding.inflate(layoutInflater)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,11 +60,11 @@ class MostLikelyToFragment :
                 override fun onAnimationEnd(p0: Animation?) {
                     if (isGameFinish) {
                         val directions =
-                            MostLikelyToFragmentDirections.actionMltOnBoardingFragmentToEndGameDialogFragment()
+                            NeverHaveIEverFragmentDirections.actionNeverHaveIEverFragmentToEndGameDialogFragment()
                         safeNavigation(directions)
                     } else {
                         binding.question.startAnimation(fromRight)
-                        binding.question.text = this@MostLikelyToFragment.nextSentence
+                        binding.question.text = this@NeverHaveIEverFragment.nextSentence
                         viewModel.getNextSentence()
                         binding.button.isEnabled = true
                     }
