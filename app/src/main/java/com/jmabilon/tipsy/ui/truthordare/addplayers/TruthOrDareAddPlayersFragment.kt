@@ -69,7 +69,7 @@ class TruthOrDareAddPlayersFragment :
             .onEach { uiState ->
                 val (playerList, playerSettings) = uiState
 
-                adapter?.initData(playerList, resources.displayMetrics.density, playerSettings)
+                adapter?.initData(playerList, playerSettings)
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 

@@ -14,7 +14,6 @@ data class AddPlayerItemViewPresentation(
     var type: AddPlayersItemViewEnum,
     var player: TruthOrDarePlayer? = null,
     var playerPosition: Int? = null,
-    var screenDensity: Float? = null,
     var playerSettings: Boolean = false,
     var playersNameList: MutableList<String>? = null
 )

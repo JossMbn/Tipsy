@@ -1,17 +1,20 @@
-package com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder
+package com.jmabilon.tipsy.ui.drinkgame.viewholder
 
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import androidx.recyclerview.widget.RecyclerView
-import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
-import com.jmabilon.tipsy.databinding.ItemTruthOrDareAddPlayersAddButtonBinding
+import com.jmabilon.tipsy.data.room.data.DrinkGamePlayer
+import com.jmabilon.tipsy.databinding.ItemDrinkGameAddPlayersEditTextBinding
 import com.jmabilon.tipsy.extensions.android.cleanPlayerName
-import com.jmabilon.tipsy.ui.truthordare.addplayers.AddPlayerItemViewPresentation
+import com.jmabilon.tipsy.ui.drinkgame.DrinkGameAddPlayersItemViewPresentation
 
-class AddPlayersAddButtonViewHolder(val binding: ItemTruthOrDareAddPlayersAddButtonBinding) :
+class DrinkGameAddPlayerEditTextViewHolder(val binding: ItemDrinkGameAddPlayersEditTextBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: AddPlayerItemViewPresentation, listener: AddPlayersAddButtonListener) {
+    fun bind(
+        item: DrinkGameAddPlayersItemViewPresentation,
+        listener: DrinkGameAddPLayerEditTextListener
+    ) {
         binding.addPlayerField.setOnEditorActionListener { textView, actionId, event ->
             if (
                 (event != null && (event.keyCode == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) &&
@@ -20,10 +23,8 @@ class AddPlayersAddButtonViewHolder(val binding: ItemTruthOrDareAddPlayersAddBut
                 if (item.playersNameList?.contains(textView.text.toString().cleanPlayerName()) == true) {
                     listener.displayError()
                 } else {
-                    listener.onAddButtonClicked(
-                        TruthOrDarePlayer(
-                            playerName = textView.text.toString().cleanPlayerName()
-                        )
+                    listener.addPlayer(
+                        DrinkGamePlayer(playerName = textView.text.toString().cleanPlayerName())
                     )
                     binding.addPlayerField.text = null
                 }
@@ -33,8 +34,8 @@ class AddPlayersAddButtonViewHolder(val binding: ItemTruthOrDareAddPlayersAddBut
         }
     }
 
-    interface AddPlayersAddButtonListener {
+    interface DrinkGameAddPLayerEditTextListener {
+        fun addPlayer(newPlayer: DrinkGamePlayer)
         fun displayError()
-        fun onAddButtonClicked(newPlayer: TruthOrDarePlayer)
     }
 }

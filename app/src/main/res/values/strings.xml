@@ -40,6 +40,9 @@
     // Most likely to
     <string name="mlt_title">Who is most likely to…</string>
 
-    // Most likely to
+    // Never Have I Ever
     <string name="nhie_title">Never have I ever…</string>
+
+    // Drink Game
+    <string name="drink_game_title">Drink Game</string>
 </resources>

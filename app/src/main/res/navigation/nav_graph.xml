@@ -36,6 +36,13 @@
             app:exitAnim="@anim/from_center_to_left"
             app:popEnterAnim="@anim/from_left_to_right"
             app:popExitAnim="@anim/from_center_to_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_nested_drink_game_graph"
+            app:destination="@id/nested_drink_game_graph"
+            app:enterAnim="@anim/from_right_to_left"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_right"
+            app:popExitAnim="@anim/from_center_to_right" />
     </fragment>
     <dialog
         android:id="@+id/endGameDialogFragment"
@@ -148,5 +155,12 @@
                 android:id="@+id/action_neverHaveIEverFragment_to_endGameDialogFragment"
                 app:destination="@id/endGameDialogFragment" />
         </fragment>
+    </navigation>
+    <navigation android:id="@+id/nested_drink_game_graph"
+        app:startDestination="@id/drinkGameAddPlayersFragment">
+        <fragment
+            android:id="@+id/drinkGameAddPlayersFragment"
+            android:name="com.jmabilon.tipsy.ui.drinkgame.DrinkGameAddPlayersFragment"
+            android:label="DrinkGameAddPlayersFragment" />
     </navigation>
 </navigation>

@@ -33,7 +33,6 @@ class TruthOrDareAddPlayersAdapter(
 
     fun initData(
         playerList: List<TruthOrDarePlayer>?,
-        screenDensity: Float,
         playerSettings: Boolean
     ) {
         val listLocal = mutableListOf<AddPlayerItemViewPresentation>()
@@ -61,8 +60,7 @@ class TruthOrDareAddPlayersAdapter(
                     AddPlayerItemViewPresentation(
                         type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD,
                         player = item,
-                        playerPosition = playerPosition,
-                        screenDensity = screenDensity
+                        playerPosition = playerPosition
                     )
                 )
                 playerPosition += 1

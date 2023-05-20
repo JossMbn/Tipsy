@@ -32,8 +32,13 @@ class HomeFragment : AbsViewBindingFragment<FragmentHomeBinding>() {
             safeNavigation(directions)
         }
 
-        binding.NeverHaveIEverGameButton.setOnClickListener {
+        binding.neverHaveIEverGameButton.setOnClickListener {
             val directions = HomeFragmentDirections.actionHomeFragmentToNestedNeverHaveIEverGraph()
+            safeNavigation(directions)
+        }
+
+        binding.drinkGameButton.setOnClickListener {
+            val directions = HomeFragmentDirections.actionHomeFragmentToNestedDrinkGameGraph()
             safeNavigation(directions)
         }
     }
