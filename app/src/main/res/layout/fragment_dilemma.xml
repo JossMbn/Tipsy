@@ -21,7 +21,7 @@
             android:id="@+id/back_icon"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:background="@drawable/background_blure_white_40_rounded"
+            android:background="@drawable/background_blure_white_40_circle"
             android:importantForAccessibility="no"
             android:padding="12dp"
             android:src="@drawable/arrow_left"
@@ -42,12 +42,14 @@
             style="@style/Museo.Extrabold.12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_blure_white_40_rounded"
+            android:background="@drawable/background_blure_white_40_circle"
+            android:clickable="false"
             android:gravity="center"
             android:paddingHorizontal="12dp"
             android:paddingVertical="16dp"
             android:text="@string/common_skip"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="invisible" />
 
     </LinearLayout>
 

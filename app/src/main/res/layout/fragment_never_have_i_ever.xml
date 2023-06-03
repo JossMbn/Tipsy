@@ -20,7 +20,7 @@
             android:id="@+id/back_icon"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:background="@drawable/background_blure_white_40_rounded"
+            android:background="@drawable/background_blure_white_40_circle"
             android:importantForAccessibility="no"
             android:padding="12dp"
             android:src="@drawable/arrow_left"

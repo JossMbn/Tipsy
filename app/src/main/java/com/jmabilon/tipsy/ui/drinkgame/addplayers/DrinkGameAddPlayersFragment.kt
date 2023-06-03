@@ -1,5 +1,6 @@
 package com.jmabilon.tipsy.ui.drinkgame.addplayers
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -35,6 +36,7 @@ class DrinkGameAddPlayersFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         viewModel.loadData()
 
         adapter = DrinkGameAddPlayersAdapter(

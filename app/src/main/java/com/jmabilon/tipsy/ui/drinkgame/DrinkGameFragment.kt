@@ -1,5 +1,6 @@
 package com.jmabilon.tipsy.ui.drinkgame
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -24,9 +25,14 @@ class DrinkGameFragment : AbsViewBindingFragment<FragmentDrinkGameBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
         binding.backIcon.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.nextButton?.setOnClickListener {
+            // do nothing
         }
     }
 
