@@ -1,4 +1,4 @@
-package com.jmabilon.tipsy.ui.drinkgame.viewholder
+package com.jmabilon.tipsy.ui.drinkgame.addplayers.viewholder
 
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jmabilon.tipsy.data.room.data.DrinkGamePlayer
 import com.jmabilon.tipsy.databinding.ItemDrinkGameAddPlayersEditTextBinding
 import com.jmabilon.tipsy.extensions.android.cleanPlayerName
-import com.jmabilon.tipsy.ui.drinkgame.DrinkGameAddPlayersItemViewPresentation
+import com.jmabilon.tipsy.ui.drinkgame.addplayers.DrinkGameAddPlayersItemViewPresentation
 
 class DrinkGameAddPlayerEditTextViewHolder(val binding: ItemDrinkGameAddPlayersEditTextBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -20,7 +20,10 @@ class DrinkGameAddPlayerEditTextViewHolder(val binding: ItemDrinkGameAddPlayersE
                 (event != null && (event.keyCode == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) &&
                 !textView.text.isNullOrEmpty()
             ) {
-                if (item.playersNameList?.contains(textView.text.toString().cleanPlayerName()) == true) {
+                if (item.playersNameList?.contains(
+                        textView.text.toString().cleanPlayerName()
+                    ) == true
+                ) {
                     listener.displayError()
                 } else {
                     listener.addPlayer(

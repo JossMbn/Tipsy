@@ -1,4 +1,4 @@
-package com.jmabilon.tipsy.ui.drinkgame
+package com.jmabilon.tipsy.ui.drinkgame.addplayers
 
 import android.os.Bundle
 import android.view.View
@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.data.room.data.DrinkGamePlayer
 import com.jmabilon.tipsy.databinding.FragmentDrinkGameAddPlayersBinding
+import com.jmabilon.tipsy.extensions.android.safeNavigation
 import com.jmabilon.tipsy.extensions.viewbinding.AbsViewBindingFragment
-import com.jmabilon.tipsy.ui.drinkgame.viewholder.DrinkGameAddPlayerEditTextViewHolder
-import com.jmabilon.tipsy.ui.drinkgame.viewholder.DrinkGameAddPlayerPlayerFieldViewHolder
+import com.jmabilon.tipsy.ui.drinkgame.addplayers.viewholder.DrinkGameAddPlayerEditTextViewHolder
+import com.jmabilon.tipsy.ui.drinkgame.addplayers.viewholder.DrinkGameAddPlayerPlayerFieldViewHolder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -53,19 +54,18 @@ class DrinkGameAddPlayersFragment :
                 false
             )
             adapter = this@DrinkGameAddPlayersFragment.adapter
-            // itemAnimator = null
         }
 
         binding.button.setOnClickListener {
             viewModel.removePlayer()
+            val directions =
+                DrinkGameAddPlayersFragmentDirections.actionDrinkGameAddPlayersFragmentToDrinkGameFragment()
+            safeNavigation(directions)
         }
 
         binding.recyclerView.setOnScrollChangeListener { _, _, _, _, _ ->
-            if (binding.recyclerView.computeVerticalScrollOffset() >= 160) {
-                binding.headerTitle.visibility = View.VISIBLE
-            } else {
-                binding.headerTitle.visibility = View.INVISIBLE
-            }
+            binding.headerTitle.alpha =
+                (-1f / binding.recyclerView.computeVerticalScrollOffset()) * 260 + 2
         }
     }
 

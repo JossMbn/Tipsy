@@ -1,4 +1,4 @@
-package com.jmabilon.tipsy.ui.drinkgame.viewholder
+package com.jmabilon.tipsy.ui.drinkgame.addplayers.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.jmabilon.tipsy.databinding.ItemDrinkGameAddPlayersTitleFieldBinding

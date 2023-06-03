@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/truth_or_dare_first_gradiant">
+    android:background="@drawable/truth_or_dare_first_gradiant"
+    android:paddingTop="25dp">
 
     <LinearLayout
         android:id="@+id/header_component"

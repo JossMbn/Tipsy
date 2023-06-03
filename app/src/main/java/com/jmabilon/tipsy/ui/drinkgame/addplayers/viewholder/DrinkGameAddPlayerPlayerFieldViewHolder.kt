@@ -1,9 +1,9 @@
-package com.jmabilon.tipsy.ui.drinkgame.viewholder
+package com.jmabilon.tipsy.ui.drinkgame.addplayers.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.jmabilon.tipsy.data.room.data.DrinkGamePlayer
 import com.jmabilon.tipsy.databinding.ItemDrinkGameAddPlayersPlayerFieldBinding
-import com.jmabilon.tipsy.ui.drinkgame.DrinkGameAddPlayersItemViewPresentation
+import com.jmabilon.tipsy.ui.drinkgame.addplayers.DrinkGameAddPlayersItemViewPresentation
 
 class DrinkGameAddPlayerPlayerFieldViewHolder(val binding: ItemDrinkGameAddPlayersPlayerFieldBinding) :
     RecyclerView.ViewHolder(binding.root) {

@@ -3,8 +3,8 @@ package com.jmabilon.tipsy.di
 import android.content.Context
 import com.jmabilon.tipsy.data.room.dao.DrinkGamePlayerDao
 import com.jmabilon.tipsy.data.room.database.DrinkGamePlayerDatabase
-import com.jmabilon.tipsy.ui.drinkgame.repository.DrinkGamePlayerRepositoryImpl
-import com.jmabilon.tipsy.ui.drinkgame.repository.IDrinkGamePlayerRepository
+import com.jmabilon.tipsy.ui.drinkgame.addplayers.repository.DrinkGamePlayerRepositoryImpl
+import com.jmabilon.tipsy.ui.drinkgame.addplayers.repository.IDrinkGamePlayerRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

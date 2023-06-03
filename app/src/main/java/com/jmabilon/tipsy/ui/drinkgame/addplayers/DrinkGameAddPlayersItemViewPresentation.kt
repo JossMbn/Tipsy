@@ -1,4 +1,4 @@
-package com.jmabilon.tipsy.ui.drinkgame
+package com.jmabilon.tipsy.ui.drinkgame.addplayers
 
 import com.jmabilon.tipsy.data.room.data.DrinkGamePlayer
 

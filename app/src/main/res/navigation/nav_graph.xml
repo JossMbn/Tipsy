@@ -156,11 +156,28 @@
                 app:destination="@id/endGameDialogFragment" />
         </fragment>
     </navigation>
-    <navigation android:id="@+id/nested_drink_game_graph"
+    <navigation
+        android:id="@+id/nested_drink_game_graph"
         app:startDestination="@id/drinkGameAddPlayersFragment">
         <fragment
             android:id="@+id/drinkGameAddPlayersFragment"
-            android:name="com.jmabilon.tipsy.ui.drinkgame.DrinkGameAddPlayersFragment"
-            android:label="DrinkGameAddPlayersFragment" />
+            android:name="com.jmabilon.tipsy.ui.drinkgame.addplayers.DrinkGameAddPlayersFragment"
+            android:label="DrinkGameAddPlayersFragment">
+            <action
+                android:id="@+id/action_drinkGameAddPlayersFragment_to_drinkGameFragment"
+                app:destination="@id/drinkGameFragment"
+                app:enterAnim="@anim/from_right_to_left"
+                app:exitAnim="@anim/from_center_to_left"
+                app:popEnterAnim="@anim/from_left_to_right"
+                app:popExitAnim="@anim/from_center_to_right" />
+        </fragment>
+        <fragment
+            android:id="@+id/drinkGameFragment"
+            android:name="com.jmabilon.tipsy.ui.drinkgame.DrinkGameFragment"
+            android:label="DrinkGameFragment">
+            <action
+                android:id="@+id/action_drinkGameFragment_to_endGameDialogFragment"
+                app:destination="@id/endGameDialogFragment" />
+        </fragment>
     </navigation>
 </navigation>

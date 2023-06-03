@@ -1,4 +1,4 @@
-package com.jmabilon.tipsy.ui.drinkgame
+package com.jmabilon.tipsy.ui.drinkgame.addplayers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,9 +9,9 @@ import com.jmabilon.tipsy.data.room.data.DrinkGamePlayer
 import com.jmabilon.tipsy.databinding.ItemDrinkGameAddPlayersEditTextBinding
 import com.jmabilon.tipsy.databinding.ItemDrinkGameAddPlayersPlayerFieldBinding
 import com.jmabilon.tipsy.databinding.ItemDrinkGameAddPlayersTitleFieldBinding
-import com.jmabilon.tipsy.ui.drinkgame.viewholder.DrinkGameAddPlayerEditTextViewHolder
-import com.jmabilon.tipsy.ui.drinkgame.viewholder.DrinkGameAddPlayerPlayerFieldViewHolder
-import com.jmabilon.tipsy.ui.drinkgame.viewholder.DrinkGameAddPlayerTitleFieldViewHolder
+import com.jmabilon.tipsy.ui.drinkgame.addplayers.viewholder.DrinkGameAddPlayerEditTextViewHolder
+import com.jmabilon.tipsy.ui.drinkgame.addplayers.viewholder.DrinkGameAddPlayerPlayerFieldViewHolder
+import com.jmabilon.tipsy.ui.drinkgame.addplayers.viewholder.DrinkGameAddPlayerTitleFieldViewHolder
 
 class DrinkGameAddPlayersAdapter(
     private val drinkGameAddPlayerEditTextListener: DrinkGameAddPlayerEditTextViewHolder.DrinkGameAddPLayerEditTextListener,

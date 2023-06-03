@@ -1,9 +1,9 @@
-package com.jmabilon.tipsy.ui.drinkgame
+package com.jmabilon.tipsy.ui.drinkgame.addplayers
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jmabilon.tipsy.data.room.data.DrinkGamePlayer
-import com.jmabilon.tipsy.ui.drinkgame.repository.IDrinkGamePlayerRepository
+import com.jmabilon.tipsy.ui.drinkgame.addplayers.repository.IDrinkGamePlayerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
