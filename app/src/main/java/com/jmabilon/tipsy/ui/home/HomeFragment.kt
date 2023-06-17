@@ -1,6 +1,5 @@
 package com.jmabilon.tipsy.ui.home
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import com.jmabilon.tipsy.databinding.FragmentHomeBinding
@@ -16,7 +15,6 @@ class HomeFragment : AbsViewBindingFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         binding.dilemmaGameButton.setOnClickListener {
             val directions = HomeFragmentDirections.actionHomeFragmentToNestedDilemmaGraph()

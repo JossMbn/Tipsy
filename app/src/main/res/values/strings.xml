@@ -46,4 +46,50 @@
 
     // Drink Game
     <string name="drink_game_title">Drink Game</string>
+    <string-array name="drink_game_player_questions_list">
+        <item>The neighbors of %1$s drink 4 mouthful</item>
+        <item>%1$s mimes an object in the room without speaking, the first to guess distributes 2 mouthful</item>
+        <item>%1$s gives a quality for each of the players and drinks a sip for each</item>
+        <item>All but %1$s drink 6 mouthful!</item>
+        <item>%1$s you must drink from the opposite hand until the end of the game! If you break the rule, you drink</item>
+        <item>%1$s You drink as many mouthful as you have had partners</item>
+        <item>%1$s you have two minutes to finish your drink</item>
+        <item>%1$s forms a couple of his choice, they must hold hands and drink together when one of the two drinks</item>
+        <item>%1$s have the part of the body you want massaged by the person of your choice for 2 minutes, if she refuses she drinks 2 mouthful</item>
+        <item>%1$s, it\'s hot isn\'t it? Take off a piece of clothing of your choice, then dispense 5 mouthful</item>
+        <item>Games!\nEach in turn you must say 3 colors. If a color has already been said, the person drinks 1 sip and must look for another. The person who can\'t say 3 colors drink 3 mouthful. %1$s begins!</item>
+        <item>%1$s does the donkey by stamping his foot, and gives 2 mouthful to whoever you want!</item>
+        <item>%1$s, give 3 mouthful to the player you know best</item>
+        <item>%1$s, show the last 5 photos from your phone or take 4 mouthful</item>
+        <item>%1$s imitates someone famous, the first to guess dispenses 3 mouthful</item>
+        <item>%1$s read your last SMS, in case of refusal you drink 3 mouthful</item>
+        <item>%1$s you can dispense 2 mouthful</item>
+        <item>%1$s you are a god, the other players worship you and give you an offering of 1 to 3 mouthful!</item>
+        <item>%1$s shows a picture of you topless or takes 7 mouthful</item>
+        <item>%1$s for love gives 3 mouthful to the player you like the most</item>
+        <item>%1$s if you manage to quote 5 positions of the Kamasutra you can distribute 5 mouthful</item>
+        <item>%1$s gets spanked by the player in front of you or takes 5 mouthful</item>
+        <item>Those who have never made love in the car drink 7 mouthful. %1$s if this is not your case, you still drink 2 mouthful to accompany the others</item>
+        <item>Games!\nClothing brands! 4 mouthful for the loser! %1$s starts</item>
+        <item>%1$s if you have ever made a declaration of love while drunk, drink 6 mouthful. Otherwise distribute them</item>
+        <item>%1$s drinks as many mouthful as there are players in the game</item>
+        <item>%1$s if you\'ve ever skateboarded in a skatepark, give out 4 mouthful. Otherwise drink them</item>
+        <item>%1$s drink as many mouthful as you have visited countries</item>
+        <item>Games!\n Take turns saying a Star Wars character. If a character has already been say the person drinks 1 sip and must look for another one. The person who cannot find a character drinks 6 mouthful. %1$s begins!</item>
+        <item>%1$s if you are a woman, out of respect everyone pours a little of their glass into yours, and you drink 7 mouthful</item>
+        <item>%1$s runs around the table, then dispenses 3 mouthful, otherwise you drink double that</item>
+        <item>Everyone pour some of your drink into the glass of %1$s, which he will have to finish</item>
+        <item>%1$s invites a friend to this party or drinks 2 mouthful</item>
+        <item>Games!\nRap group! 6 mouthful for the loser! %1$s starts</item>
+        <item>%1$s takes 5 mouthful!</item>
+        <item>%1$s takes off a piece of clothing or takes 5 mouthful</item>
+        <item>%1$s, give as many mouthful as you want to another player (within reason, you have to continue the game anyway)</item>
+        <item>Games!\nCar brand! 6 mouthful for the loser! %1$s starts</item>
+        <item>%1$s takes 2 mouthful and dispenses 5</item>
+        <item>%1$s if you\'re parents decorate the outside of your house for Christmas, distribute 6 mouthful, that\'s the magic of Christmas!</item>
+        <item>Have you ever had a one night stand? If so, distribute 5 mouthful, if not, drink them</item>
+        <item>Games!\nMale names starting with V! 6 mouthful for the loser! %1$s starts</item>
+        <item>%1$s, toss heads or tails. Choose first the face that will make you drink 7 mouthful and the one that will make you distribute them</item>
+        <item>%1$s balance on your hands or drink 3 mouthful</item>
+    </string-array>
 </resources>

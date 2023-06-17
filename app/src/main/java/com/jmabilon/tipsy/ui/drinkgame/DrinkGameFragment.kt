@@ -1,6 +1,5 @@
 package com.jmabilon.tipsy.ui.drinkgame
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -8,7 +7,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.databinding.FragmentDrinkGameBinding
+import com.jmabilon.tipsy.extensions.android.safeNavigation
 import com.jmabilon.tipsy.extensions.viewbinding.AbsViewBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -25,15 +26,16 @@ class DrinkGameFragment : AbsViewBindingFragment<FragmentDrinkGameBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
         binding.backIcon.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        binding.nextButton?.setOnClickListener {
-            // do nothing
+        binding.nextButton.setOnClickListener {
+            viewModel.updateData()
         }
+
+        viewModel.loadData(resources.getStringArray(R.array.drink_game_player_questions_list))
     }
 
     override fun initViewModelObservation() {
@@ -41,8 +43,15 @@ class DrinkGameFragment : AbsViewBindingFragment<FragmentDrinkGameBinding>() {
 
         viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.RESUMED)
             .onEach { uiState ->
-                val (test) = uiState
+                val (newSentence, gameIsFinish) = uiState
 
+                newSentence?.let {
+                    binding.gameSentence.text = it
+                }
+                if (gameIsFinish) {
+                    val directions = DrinkGameFragmentDirections.actionDrinkGameFragmentToEndGameDialogFragment()
+                    safeNavigation(directions)
+                }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 }

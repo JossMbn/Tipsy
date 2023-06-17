@@ -1,5 +1,6 @@
 package com.jmabilon.tipsy.ui.drinkgame
 
 data class DrinkGameUiState(
-    val test: String? = null
+    val sentence: String? = null,
+    val gameIsFinish: Boolean = false
 )
