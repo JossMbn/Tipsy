@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/back_icon"
+            android:id="@+id/backIcon"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/background_blure_white_40_circle"
@@ -41,7 +41,6 @@
         app:layout_constraintTop_toBottomOf="@id/header_component">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/first_hide_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="30dp"
@@ -57,7 +56,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/second_hide_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="30dp"
@@ -73,7 +71,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/game_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="30dp"
@@ -88,7 +85,6 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/game_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"

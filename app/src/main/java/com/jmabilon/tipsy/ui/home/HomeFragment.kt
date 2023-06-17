@@ -15,6 +15,7 @@ class HomeFragment : AbsViewBindingFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        launchBackgroundAnimation()
 
         binding.dilemmaGameButton.setOnClickListener {
             val directions = HomeFragmentDirections.actionHomeFragmentToNestedDilemmaGraph()

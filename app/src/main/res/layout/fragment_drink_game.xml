@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/back_icon"
+            android:id="@+id/backIcon"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/background_blure_white_40_circle"
@@ -32,7 +32,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/game_sentence"
+        android:id="@+id/gameSentence"
         style="@style/Museo.Bold.25"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
         tools:text="je suis un text" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/next_button"
+        android:id="@+id/nextButton"
         style="@style/Museo.Extrabold.18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

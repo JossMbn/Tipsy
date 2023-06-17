@@ -7,7 +7,6 @@
     android:background="@color/translucent">
 
     <LinearLayout
-        android:id="@+id/custom_snackbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
@@ -21,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/custom_snackbar_alert_message"
+            android:id="@+id/customSnackbarAlertMessage"
             style="@style/Museo.Semibold.14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

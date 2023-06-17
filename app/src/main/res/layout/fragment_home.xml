@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:background="@drawable/truth_or_dare_animation_list_background">
 
     <Button
         android:id="@+id/dilemma_game_button"
@@ -43,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/most_likely_to_game_button" />
 
     <Button
-        android:id="@+id/drink_game_button"
+        android:id="@+id/drinkGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Drink"

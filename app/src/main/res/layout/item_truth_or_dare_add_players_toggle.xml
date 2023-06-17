@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/player_option_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
@@ -12,7 +11,6 @@
     tools:background="@drawable/truth_or_dare_first_gradiant">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/play_option_text"
         style="@style/Museo.Bold.20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,14 +19,14 @@
         android:gravity="start"
         android:paddingHorizontal="20dp"
         android:paddingVertical="15dp"
-        android:text="Play with names"
+        android:text="@string/tod_play_with_names"
         android:textColor="@color/white_80"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/play_option_switch"
+        android:id="@+id/playOptionSwitch"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="10dp"

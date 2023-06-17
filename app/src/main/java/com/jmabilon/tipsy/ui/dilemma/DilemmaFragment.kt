@@ -41,11 +41,6 @@ class DilemmaFragment :
             performHapticFeedback()
             findNavController().popBackStack()
         }
-
-        binding.skipText.setOnClickListener {
-            performHapticFeedback()
-            viewModel.getNextDilemma()
-        }
     }
 
     override fun initViewModelObservation() {
@@ -53,9 +48,14 @@ class DilemmaFragment :
 
         viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
             .onEach { uiState ->
-                val (dilemma, isGameFinish) = uiState
+                val (dilemma, isGameFinish, dilemmaCount) = uiState
                 binding.firstCard.setCardText(dilemma?.firstDilemma?.replaceFirstChar(Char::uppercaseChar))
                 binding.secondCard.setCardText(dilemma?.secondDilemma?.replaceFirstChar(Char::uppercaseChar))
+                binding.countText.text = resources.getString(
+                    R.string.dilemma_session_count,
+                    dilemmaCount,
+                    args.dilemmaCount.toInt()
+                )
                 if (isGameFinish) {
                     val directions =
                         DilemmaFragmentDirections.actionDilemmaFragmentToEndGameDialogFragment(

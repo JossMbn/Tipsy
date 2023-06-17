@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/back_icon"
+            android:id="@+id/backIcon"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/background_blure_white_40_circle"
@@ -34,7 +34,7 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:id="@+id/add_players_icon"
+            android:id="@+id/addPlayersIcon"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/background_blure_white_40_circle"
@@ -61,7 +61,6 @@
             android:layout_weight="1">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/first_hide_card"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="30dp"
@@ -77,7 +76,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/second_hide_card"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="30dp"
@@ -93,7 +91,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/game_card"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="30dp"
@@ -108,7 +105,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
-                    android:id="@+id/tutorial_container"
+                    android:id="@+id/tutorialContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -117,7 +114,6 @@
                     android:visibility="visible">
 
                     <TextView
-                        android:id="@+id/tutorial_title"
                         style="@style/Museo.Bold.25"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -130,7 +126,6 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tutorial_description"
                         style="@style/Museo.Bold.18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -145,7 +140,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/next_player_container"
+                    android:id="@+id/nextPlayerContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -154,7 +149,6 @@
                     android:visibility="gone">
 
                     <TextView
-                        android:id="@+id/next_player_title"
                         style="@style/Museo.Bold.18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -167,7 +161,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/next_player_name"
+                        android:id="@+id/nextPlayerName"
                         style="@style/Museo.Bold.25"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -181,7 +175,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/game_card_container"
+                    android:id="@+id/gameCardContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -190,7 +184,7 @@
                     android:visibility="gone">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/game_player_choice"
+                        android:id="@+id/gamePlayerChoice"
                         style="@style/Museo.Semibold.14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -204,7 +198,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/game_player_name"
+                        android:id="@+id/gamePlayerName"
                         style="@style/Museo.Bold.25"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -216,7 +210,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/game_truth_or_dare_text"
+                        android:id="@+id/gameTruthOrDareText"
                         style="@style/Museo.Semibold.18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -241,7 +235,7 @@
             android:layout_marginBottom="35dp">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/skip_tutorial_button"
+                android:id="@+id/skipTutorialButton"
                 style="@style/Museo.Bold.25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -259,7 +253,7 @@
                 tools:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/next_player_button"
+                android:id="@+id/nextPlayerButton"
                 style="@style/Museo.Bold.25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

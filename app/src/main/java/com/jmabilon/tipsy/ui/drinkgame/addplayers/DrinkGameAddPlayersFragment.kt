@@ -43,6 +43,7 @@ class DrinkGameAddPlayersFragment :
         )
 
         binding.backIcon.setOnClickListener {
+            performHapticFeedback()
             viewModel.removePlayer()
             findNavController().popBackStack()
         }
@@ -57,6 +58,7 @@ class DrinkGameAddPlayersFragment :
         }
 
         binding.button.setOnClickListener {
+            performHapticFeedback()
             viewModel.removePlayer()
             val directions =
                 DrinkGameAddPlayersFragmentDirections.actionDrinkGameAddPlayersFragmentToDrinkGameFragment()

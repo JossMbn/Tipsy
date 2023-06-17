@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/back_icon"
+            android:id="@+id/backIcon"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/background_blure_white_40_circle"
@@ -41,7 +41,6 @@
             android:textColor="@color/white_80" />
 
         <View
-            android:id="@+id/empty_icon"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:importantForAccessibility="no"
@@ -53,7 +52,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingBottom="110dp"

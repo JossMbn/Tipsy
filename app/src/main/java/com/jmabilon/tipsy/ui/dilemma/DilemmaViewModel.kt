@@ -22,12 +22,14 @@ class DilemmaViewModel : ViewModel() {
         setDilemmaCount(dilemmaCount, dilemmaCountArray)
         dataPosition += 1
         updateDilemmaData(data.first())
+        updateDilemmaCount(dataPosition)
     }
 
     fun getNextDilemma() {
         if (dataPosition < dilemmaCount) {
             updateDilemmaData(data[dataPosition])
             dataPosition += 1
+            updateDilemmaCount(dataPosition)
         } else {
             updateIsGameFinish(true)
         }
@@ -45,6 +47,14 @@ class DilemmaViewModel : ViewModel() {
         _uiState.update { currentState ->
             currentState.copy(
                 dilemmaData =  newData
+            )
+        }
+    }
+
+    private fun updateDilemmaCount(newCount: Int) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                count =  newCount
             )
         }
     }

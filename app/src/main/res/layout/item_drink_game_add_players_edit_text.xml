@@ -16,7 +16,7 @@
         android:autofillHints="test"
         android:background="@drawable/background_edit_text_blure_white_60_rounded"
         android:focusable="true"
-        android:hint="Add a new player"
+        android:hint="@string/common_add_new_players"
         android:inputType="text"
         android:imeOptions="actionDone"
         android:paddingStart="45dp"
@@ -29,7 +29,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/add_button"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="5dp"

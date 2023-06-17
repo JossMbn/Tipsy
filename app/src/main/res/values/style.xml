@@ -32,33 +32,9 @@
         <item name="fontFamily">@font/museo_regular</item>
     </style>
 
-    <style name="Museo.12">
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="Museo.14">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="Museo.16">
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="Museo.18">
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="Museo.20">
-        <item name="android:textSize">20sp</item>
-    </style>
-
     <style name="Museo.Semibold">
         <item name="android:fontFamily">@font/museo_semibold</item>
         <item name="fontFamily">@font/museo_semibold</item>
-    </style>
-
-    <style name="Museo.Semibold.12">
-        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="Museo.Semibold.14">
@@ -77,25 +53,9 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="Museo.Semibold.25">
-        <item name="android:textSize">25sp</item>
-    </style>
-
     <style name="Museo.Bold">
         <item name="android:fontFamily">@font/museo_bold</item>
         <item name="fontFamily">@font/museo_bold</item>
-    </style>
-
-    <style name="Museo.Bold.12">
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="Museo.Bold.14">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="Museo.Bold.16">
-        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="Museo.Bold.18">
@@ -108,10 +68,6 @@
 
     <style name="Museo.Bold.25">
         <item name="android:textSize">25sp</item>
-    </style>
-
-    <style name="Museo.Bold.28">
-        <item name="android:textSize">28sp</item>
     </style>
 
     <style name="Museo.Bold.30">
@@ -129,14 +85,6 @@
 
     <style name="Museo.Extrabold.12">
         <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="Museo.Extrabold.14">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="Museo.Extrabold.16">
-        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="Museo.Extrabold.18">

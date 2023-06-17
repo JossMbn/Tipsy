@@ -28,10 +28,12 @@ class DrinkGameFragment : AbsViewBindingFragment<FragmentDrinkGameBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.backIcon.setOnClickListener {
+            performHapticFeedback()
             findNavController().popBackStack()
         }
 
         binding.nextButton.setOnClickListener {
+            performHapticFeedback()
             viewModel.updateData()
         }
 

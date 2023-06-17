@@ -13,15 +13,14 @@ class DilemmaOnBoardingFragment :
     AbsViewBindingFragment<FragmentDilemmaOnBoardingBinding>() {
 
     private var dilemmaCount: String? = null
-    var dropDownItems: Array<String>? = null
-    var dropDownAdapter: ArrayAdapter<String>? = null
+    private var dropDownItems: Array<String>? = null
+    private var dropDownAdapter: ArrayAdapter<String>? = null
     override fun getViewBinding(): FragmentDilemmaOnBoardingBinding {
         return FragmentDilemmaOnBoardingBinding.inflate(layoutInflater)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        launchBackgroundAnimation()
         binding.dropdownMenuTextView.setOnItemClickListener { _, _, _, _ ->
             dilemmaCount = binding.dropdownMenuTextView.text.toString()
         }
