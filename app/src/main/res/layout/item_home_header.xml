@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:layout_marginBottom="25dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingHorizontal="15dp">
+
+    <app.rive.runtime.kotlin.RiveAnimationView
+        android:id="@+id/rive_animation"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riveResource="@raw/question_mark_nhie_animation" />
+
+    <TextView
+        style="@style/Museo.Extrabold.40"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/white" />
+
+</LinearLayout>

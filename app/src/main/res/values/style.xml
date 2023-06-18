@@ -58,6 +58,14 @@
         <item name="fontFamily">@font/museo_bold</item>
     </style>
 
+    <style name="Museo.Bold.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Museo.Bold.14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="Museo.Bold.18">
         <item name="android:textSize">18sp</item>
     </style>
@@ -97,6 +105,10 @@
 
     <style name="Museo.Extrabold.30">
         <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="Museo.Extrabold.40">
+        <item name="android:textSize">40sp</item>
     </style>
 
 </resources>

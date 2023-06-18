@@ -6,50 +6,13 @@
     android:layout_gravity="center"
     android:background="@drawable/truth_or_dare_animation_list_background">
 
-    <Button
-        android:id="@+id/dilemma_game_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="dilemma"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/true_or_dare_game_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="True or Dare"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dilemma_game_button" />
-
-    <Button
-        android:id="@+id/most_likely_to_game_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Most likely to"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/true_or_dare_game_button" />
-
-    <Button
-        android:id="@+id/never_have_i_ever_game_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Never have i ever"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/most_likely_to_game_button" />
-
-    <Button
-        android:id="@+id/drinkGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Drink"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/never_have_i_ever_game_button" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

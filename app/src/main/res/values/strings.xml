@@ -1,6 +1,7 @@
 <resources>
     // Common
     <string name="app_name">Tipsy</string>
+    <string name="app_version">v%1$s</string>
     <string name="common_or">OR</string>
     <string name="common_start">Start !</string>
     <string name="common_go_home">Go home</string>
@@ -10,6 +11,10 @@
     <string name="common_dialog_description">You will be redirected to the home page where other games are waiting for you.</string>
     <string name="common_players">Players</string>
     <string name="common_add_new_players">Add a new player</string>
+
+    // Home
+    <string name="home_soft_section">Soft Games</string>
+    <string name="home_popular_section">Most Popular</string>
 
     // Dilemma
     <string name="would_you_rather">Would you rather</string>

@@ -23,7 +23,7 @@
             android:background="@drawable/background_blure_white_40_circle"
             android:importantForAccessibility="no"
             android:padding="12dp"
-            android:src="@drawable/arrow_left"
+            android:src="@drawable/ico_arrow_left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/white" />
