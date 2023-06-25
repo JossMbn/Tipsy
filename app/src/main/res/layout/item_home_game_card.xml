@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="@color/white"
-    android:orientation="horizontal"
     android:layout_marginHorizontal="15dp"
     android:layout_marginVertical="5dp"
+    android:background="@drawable/background_blure_white_60_rounded"
+    android:orientation="horizontal"
     android:padding="15dp">
 
     <ImageView
