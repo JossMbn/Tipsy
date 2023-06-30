@@ -15,6 +15,7 @@
     <!-- Blue -->
     <color name="blue_main">#FF2251F7</color>
     <color name="blue_high">#FF1F43D4</color>
+    <color name="blue_app_icon">#FF1E40E2</color>
 
     <!-- Pink -->
     <color name="pink_main">#FFE94057</color>

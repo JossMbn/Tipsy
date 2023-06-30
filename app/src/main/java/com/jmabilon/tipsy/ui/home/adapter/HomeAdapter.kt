@@ -50,7 +50,7 @@ class HomeAdapter(
                 HomeCardTypeEnum.DILEMMA,
                 "Dilemma",
                 "What would you do if you need to choose between two dilemmas ?",
-                ContextCompat.getDrawable(context, R.drawable.ico_question_mark)
+                ContextCompat.getDrawable(context, R.drawable.ic_question_mark)
             ),
             CardData(
                 HomeCardTypeEnum.MOST_LIKELY_TO,
