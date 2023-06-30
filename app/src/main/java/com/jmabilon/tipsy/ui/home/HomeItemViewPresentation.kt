@@ -6,7 +6,8 @@ enum class HomeItemViewEnum(val viewType: Int) {
     HOME_HEADER_ITEM(0),
     HOME_SECTION_ITEM(1),
     HOME_GAME_CARD_ITEM(2),
-    HOME_FOOTER_ITEM(3)
+    HOME_FOOTER_ITEM(3),
+    HOME_ADS_ITEM(4)
 }
 
 enum class HomeCardTypeEnum(val type: Int) {

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jmabilon.tipsy.R
+import com.jmabilon.tipsy.databinding.ItemHomeAdsBinding
 import com.jmabilon.tipsy.databinding.ItemHomeFooterBinding
 import com.jmabilon.tipsy.databinding.ItemHomeGameCardBinding
 import com.jmabilon.tipsy.databinding.ItemHomeHeaderBinding
@@ -16,6 +17,7 @@ import com.jmabilon.tipsy.databinding.ItemHomeSectionBinding
 import com.jmabilon.tipsy.ui.home.HomeCardTypeEnum
 import com.jmabilon.tipsy.ui.home.HomeItemViewEnum
 import com.jmabilon.tipsy.ui.home.HomeItemViewPresentation
+import com.jmabilon.tipsy.ui.home.viewholder.HomeAdsViewHolder
 import com.jmabilon.tipsy.ui.home.viewholder.HomeFooterViewHolder
 import com.jmabilon.tipsy.ui.home.viewholder.HomeGameCardViewHolder
 import com.jmabilon.tipsy.ui.home.viewholder.HomeHeaderViewHolder
@@ -91,6 +93,12 @@ class HomeAdapter(
 
         listLocal.add(
             HomeItemViewPresentation(
+                type = HomeItemViewEnum.HOME_ADS_ITEM
+            )
+        )
+
+        listLocal.add(
+            HomeItemViewPresentation(
                 type = HomeItemViewEnum.HOME_SECTION_ITEM,
                 sectionTitle = context.resources.getString(R.string.home_soft_section)
             )
@@ -148,6 +156,15 @@ class HomeAdapter(
                 HomeGameCardViewHolder(binding)
             }
 
+            HomeItemViewEnum.HOME_ADS_ITEM.viewType -> {
+                val binding = ItemHomeAdsBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                HomeAdsViewHolder(binding)
+            }
+
             else -> {
                 val binding = ItemHomeFooterBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -173,6 +190,10 @@ class HomeAdapter(
 
                 HomeItemViewEnum.HOME_GAME_CARD_ITEM.viewType -> {
                     (holder as HomeGameCardViewHolder).bind(item, homeGameCardListener)
+                }
+
+                HomeItemViewEnum.HOME_ADS_ITEM.viewType -> {
+                    (holder as HomeAdsViewHolder).bind()
                 }
 
                 HomeItemViewEnum.HOME_FOOTER_ITEM.viewType -> {

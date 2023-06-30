@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.AdRequest
 import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.databinding.FragmentDrinkGameBinding
 import com.jmabilon.tipsy.extensions.android.safeNavigation
@@ -26,6 +27,9 @@ class DrinkGameFragment : AbsViewBindingFragment<FragmentDrinkGameBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        listOf(binding.adViewTop, binding.adViewBottom).forEach {
+            it.loadAd(AdRequest.Builder().build())
+        }
 
         binding.backIcon.setOnClickListener {
             performHapticFeedback()
