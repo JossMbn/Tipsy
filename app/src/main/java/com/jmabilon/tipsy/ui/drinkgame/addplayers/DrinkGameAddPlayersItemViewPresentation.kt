@@ -10,6 +10,5 @@ enum class DrinkGameAddPlayersItemViewEnum(val viewType: Int) {
 
 data class DrinkGameAddPlayersItemViewPresentation(
     var type: DrinkGameAddPlayersItemViewEnum,
-    var player: DrinkGamePlayer? = null,
-    var playersNameList: List<String>? = null
+    var player: DrinkGamePlayer? = null
 )

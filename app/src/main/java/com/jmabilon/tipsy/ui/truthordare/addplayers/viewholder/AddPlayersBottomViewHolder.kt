@@ -8,11 +8,11 @@ class AddPlayersBottomViewHolder(val binding: ItemTruthOrDareAddPlayersBottomBin
 
     fun bind(listener: AddPLayersBottomListener) {
         binding.closeButton.setOnClickListener {
-            listener.onRemovePlayersListClicked()
+            listener.backToGame()
         }
     }
 
     interface AddPLayersBottomListener {
-        fun onRemovePlayersListClicked()
+        fun backToGame()
     }
 }

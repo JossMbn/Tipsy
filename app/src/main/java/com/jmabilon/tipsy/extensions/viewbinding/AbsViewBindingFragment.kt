@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.jmabilon.tipsy.commons.CustomSnackBar
 
 abstract class AbsViewBindingFragment<VB : ViewBinding> : Fragment() {
 
@@ -54,12 +53,5 @@ abstract class AbsViewBindingFragment<VB : ViewBinding> : Fragment() {
         animatorBackground.setEnterFadeDuration(1000)
         animatorBackground.setExitFadeDuration(3500)
         animatorBackground.start()
-    }
-
-    fun displayError(title: String) {
-        CustomSnackBar.make(
-            requireActivity().findViewById(android.R.id.content),
-            title = title
-        ).show()
     }
 }

@@ -13,7 +13,5 @@ enum class AddPlayersItemViewEnum(val viewType: Int) {
 data class AddPlayerItemViewPresentation(
     var type: AddPlayersItemViewEnum,
     var player: TruthOrDarePlayer? = null,
-    var playerPosition: Int? = null,
-    var playerSettings: Boolean = false,
-    var playersNameList: MutableList<String>? = null
+    var playerSettings: Boolean = false
 )

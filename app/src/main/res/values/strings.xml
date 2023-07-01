@@ -55,6 +55,7 @@
 
     // Drink Game
     <string name="drink_game_title">Drink Game</string>
+    <string name="drink_game_not_enough_players_error">2 players minimum are required to start a game</string>
     <string-array name="drink_game_player_questions_list">
         <item>The neighbors of %1$s drink 4 mouthful</item>
         <item>%1$s mimes an object in the room without speaking, the first to guess distributes 2 mouthful</item>

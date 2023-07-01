@@ -20,7 +20,6 @@ class TruthOrDareAddPlayersViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var _uiState = MutableStateFlow(value = TruthOrDareAddPlayersUiState())
-    private var playersIdList = mutableListOf<Int>()
 
     val uiState: StateFlow<TruthOrDareAddPlayersUiState>
         get() = _uiState
@@ -39,28 +38,14 @@ class TruthOrDareAddPlayersViewModel @Inject constructor(
     fun addPlayer(newPLayer: TruthOrDarePlayer) {
         viewModelScope.launch(Dispatchers.IO) {
             truthOrDarePlayerRepository.addPlayer(newPLayer)
+            getAllPlayers()
         }
     }
 
-    fun deletePlayer() {
+    fun deletePlayer(playerId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            if (playersIdList.isNotEmpty()) {
-                if (playersIdList.size > 1) {
-                    truthOrDarePlayerRepository.deletePlayerFromList(playersIdList)
-                } else {
-                    truthOrDarePlayerRepository.deletePlayer(playersIdList.first())
-                }
-            }
-        }
-    }
-
-    fun updatePlayersIdList(playerId: Int) {
-        this.playersIdList.add(playerId)
-    }
-
-    fun updatePlayer(playerId: Int, newPlayerName: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            truthOrDarePlayerRepository.updatePlayer(playerId, newPlayerName)
+            truthOrDarePlayerRepository.deletePlayer(playerId)
+            getAllPlayers()
         }
     }
 

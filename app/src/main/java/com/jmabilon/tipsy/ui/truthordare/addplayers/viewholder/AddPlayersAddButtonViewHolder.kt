@@ -6,27 +6,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
 import com.jmabilon.tipsy.databinding.ItemTruthOrDareAddPlayersAddButtonBinding
 import com.jmabilon.tipsy.extensions.android.cleanPlayerName
-import com.jmabilon.tipsy.ui.truthordare.addplayers.AddPlayerItemViewPresentation
 
 class AddPlayersAddButtonViewHolder(val binding: ItemTruthOrDareAddPlayersAddButtonBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: AddPlayerItemViewPresentation, listener: AddPlayersAddButtonListener) {
+    fun bind(listener: AddPlayersAddButtonListener) {
         binding.addPlayerField.setOnEditorActionListener { textView, actionId, event ->
             if (
                 (event != null && (event.keyCode == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) &&
                 !textView.text.isNullOrEmpty()
             ) {
-                if (item.playersNameList?.contains(textView.text.toString().cleanPlayerName()) == true) {
-                    listener.displayError()
-                } else {
-                    listener.onAddButtonClicked(
-                        TruthOrDarePlayer(
-                            playerName = textView.text.toString().cleanPlayerName()
-                        )
+                listener.addPlayer(
+                    TruthOrDarePlayer(
+                        playerName = textView.text.toString().cleanPlayerName()
                     )
-                    binding.addPlayerField.text = null
-                }
+                )
+                binding.addPlayerField.text = null
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
@@ -35,6 +30,6 @@ class AddPlayersAddButtonViewHolder(val binding: ItemTruthOrDareAddPlayersAddBut
 
     interface AddPlayersAddButtonListener {
         fun displayError()
-        fun onAddButtonClicked(newPlayer: TruthOrDarePlayer)
+        fun addPlayer(newPlayer: TruthOrDarePlayer)
     }
 }

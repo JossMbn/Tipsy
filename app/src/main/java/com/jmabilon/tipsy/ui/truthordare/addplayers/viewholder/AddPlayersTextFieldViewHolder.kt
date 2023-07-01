@@ -1,11 +1,8 @@
 package com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder
 
-import android.content.Context
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
 import com.jmabilon.tipsy.databinding.ItemTruthOrDareAddPlayersTextFieldBinding
-import com.jmabilon.tipsy.extensions.android.hideKeyboard
 import com.jmabilon.tipsy.ui.truthordare.addplayers.AddPlayerItemViewPresentation
 
 class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFieldBinding) :
@@ -13,8 +10,6 @@ class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFi
 
     fun bind(
         item: AddPlayerItemViewPresentation,
-        context: Context,
-        view: View,
         listener: AddPlayersTextFieldListener
     ) {
         item.player?.let {
@@ -22,17 +17,14 @@ class AddPlayersTextFieldViewHolder(val binding: ItemTruthOrDareAddPlayersTextFi
         }
 
         binding.removeButton.setOnClickListener {
-            item.playerPosition?.let { position ->
-                item.player?.let { player ->
-                    listener.onRemoveFromAdapterClicked(player, position)
-                    binding.playerField.clearFocus()
-                    context.hideKeyboard(view)
-                }
+            item.player?.let { player ->
+                listener.removePlayer(player)
+                binding.playerField.clearFocus()
             }
         }
     }
 
     interface AddPlayersTextFieldListener {
-        fun onRemoveFromAdapterClicked(player: TruthOrDarePlayer, position: Int)
+        fun removePlayer(player: TruthOrDarePlayer)
     }
 }

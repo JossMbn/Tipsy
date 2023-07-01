@@ -1,5 +1,6 @@
 package com.jmabilon.tipsy.ui.drinkgame.addplayers
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -14,19 +15,15 @@ import com.jmabilon.tipsy.ui.drinkgame.addplayers.viewholder.DrinkGameAddPlayerP
 import com.jmabilon.tipsy.ui.drinkgame.addplayers.viewholder.DrinkGameAddPlayerTitleFieldViewHolder
 
 class DrinkGameAddPlayersAdapter(
+    private val context: Context,
     private val drinkGameAddPlayerEditTextListener: DrinkGameAddPlayerEditTextViewHolder.DrinkGameAddPLayerEditTextListener,
     private val drinkGameAddPLayerPlayerFieldListener: DrinkGameAddPlayerPlayerFieldViewHolder.DrinkGameAddPLayerPlayerFieldListener
 ) : ListAdapter<DrinkGameAddPlayersItemViewPresentation, RecyclerView.ViewHolder>(DiffCallBack()) {
 
-    fun initData(
+    fun setupData(
         playerList: List<DrinkGamePlayer>?
     ) {
         val listLocal = mutableListOf<DrinkGameAddPlayersItemViewPresentation>()
-        val playersNameList = mutableListOf<String>()
-
-        playerList?.forEach { player ->
-            playersNameList.add(player.playerName.toString())
-        }
 
         listLocal.add(
             DrinkGameAddPlayersItemViewPresentation(
@@ -36,8 +33,7 @@ class DrinkGameAddPlayersAdapter(
 
         listLocal.add(
             DrinkGameAddPlayersItemViewPresentation(
-                type = DrinkGameAddPlayersItemViewEnum.ITEM_ADD_PLAYERS_EDIT_TEXT,
-                playersNameList = playersNameList
+                type = DrinkGameAddPlayersItemViewEnum.ITEM_ADD_PLAYERS_EDIT_TEXT
             )
         )
 
@@ -48,43 +44,6 @@ class DrinkGameAddPlayersAdapter(
                     player = player
                 )
             )
-        }
-
-        this.submitList(
-            listLocal.toList()
-        )
-    }
-
-    fun addPlayer(newPlayer: DrinkGamePlayer) {
-        val listLocal = mutableListOf<DrinkGameAddPlayersItemViewPresentation>()
-
-        for (item in currentList.toList()) {
-            listLocal.add(item.copy())
-        }
-
-        listLocal.add(
-            DrinkGameAddPlayersItemViewPresentation(
-                type = DrinkGameAddPlayersItemViewEnum.ITEM_ADD_PLAYERS_PLAYER_FIELD,
-                player = newPlayer
-            )
-        )
-
-        this.submitList(
-            listLocal.toList()
-        )
-    }
-
-    fun removePlayer(playerName: String) {
-        val listLocal = mutableListOf<DrinkGameAddPlayersItemViewPresentation>()
-
-        for (item in currentList.toList()) {
-            if (item.type == DrinkGameAddPlayersItemViewEnum.ITEM_ADD_PLAYERS_PLAYER_FIELD) {
-                if (item.player?.playerName != playerName) {
-                    listLocal.add(item.copy())
-                }
-            } else {
-                listLocal.add(item.copy())
-            }
         }
 
         this.submitList(
@@ -138,7 +97,6 @@ class DrinkGameAddPlayersAdapter(
 
                 DrinkGameAddPlayersItemViewEnum.ITEM_ADD_PLAYERS_EDIT_TEXT.viewType -> {
                     (holder as DrinkGameAddPlayerEditTextViewHolder).bind(
-                        item,
                         drinkGameAddPlayerEditTextListener
                     )
                 }

@@ -12,7 +12,9 @@ import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.data.room.data.TruthOrDarePlayer
 import com.jmabilon.tipsy.databinding.FragmentTruthOrDareAddPlayersBinding
 import com.jmabilon.tipsy.extensions.android.safeNavigation
+import com.jmabilon.tipsy.extensions.android.showFeedback
 import com.jmabilon.tipsy.extensions.viewbinding.AbsViewBindingFragment
+import com.jmabilon.tipsy.ui.home.HomeActivity
 import com.jmabilon.tipsy.ui.truthordare.addplayers.adapter.TruthOrDareAddPlayersAdapter
 import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersAddButtonViewHolder
 import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersBottomViewHolder
@@ -43,8 +45,6 @@ class TruthOrDareAddPlayersFragment :
         viewModel.loadData()
 
         adapter = TruthOrDareAddPlayersAdapter(
-            requireContext(),
-            view,
             this,
             this,
             this,
@@ -58,7 +58,6 @@ class TruthOrDareAddPlayersFragment :
                 false
             )
             adapter = this@TruthOrDareAddPlayersFragment.adapter
-            itemAnimator = null
         }
     }
 
@@ -69,7 +68,7 @@ class TruthOrDareAddPlayersFragment :
             .onEach { uiState ->
                 val (playerList, playerSettings) = uiState
 
-                adapter?.initData(playerList, playerSettings)
+                adapter?.setupData(playerList, playerSettings)
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
@@ -80,21 +79,22 @@ class TruthOrDareAddPlayersFragment :
     }
 
     override fun displayError() {
-        displayError(getString(R.string.tod_error_player_already_exist))
+        (requireActivity() as HomeActivity).showFeedback(
+            requireContext(),
+            getString(R.string.tod_error_player_already_exist)
+        )
     }
 
-    override fun onAddButtonClicked(newPlayer: TruthOrDarePlayer) {
-        adapter?.updateTextFieldsList(newPlayer)
+    override fun addPlayer(newPlayer: TruthOrDarePlayer) {
         viewModel.addPlayer(newPlayer)
     }
 
-    override fun onRemoveFromAdapterClicked(player: TruthOrDarePlayer, position: Int) {
-        adapter?.removeTextField(player.playerName.toString(), position)
-        viewModel.updatePlayersIdList(player.id)
+    override fun removePlayer(player: TruthOrDarePlayer) {
+        viewModel.deletePlayer(player.id)
+
     }
 
-    override fun onRemovePlayersListClicked() {
-        viewModel.deletePlayer()
+    override fun backToGame() {
         redirectToGame()
     }
 

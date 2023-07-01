@@ -18,38 +18,45 @@ class DrinkGameAddPlayersViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var _uiState = MutableStateFlow(value = DrinkGameAddPlayersUiState())
-    private var playersIdList = mutableListOf<Int>()
+    private var _playersCount: Int = 0
 
     val uiState: StateFlow<DrinkGameAddPlayersUiState>
         get() = _uiState
 
+    val playersCount: Int
+        get() = _playersCount
+
     fun loadData() {
+        getAllPlayers()
+        getPlayersCount()
+    }
+
+    private fun getAllPlayers() {
         viewModelScope.launch(Dispatchers.IO) {
             updatePlayerList(drinkGameAddGamePlayerRepository.getAllPlayers())
+        }
+    }
+
+    private fun getPlayersCount() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _playersCount = drinkGameAddGamePlayerRepository.getAllPlayers().size
         }
     }
 
     fun addPlayer(newPLayer: DrinkGamePlayer) {
         viewModelScope.launch(Dispatchers.IO) {
             drinkGameAddGamePlayerRepository.addPlayer(newPLayer)
+            getPlayersCount()
+            loadData()
         }
     }
 
-    fun removePlayer() {
+    fun removePlayer(playerId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            if (playersIdList.isNotEmpty()) {
-                if (playersIdList.size > 1) {
-                    drinkGameAddGamePlayerRepository.deletePlayerFromList(playersIdList)
-                } else {
-                    drinkGameAddGamePlayerRepository.deletePlayer(playersIdList.first())
-                }
-                playersIdList.clear()
-            }
+            drinkGameAddGamePlayerRepository.deletePlayer(playerId)
+            getPlayersCount()
+            loadData()
         }
-    }
-
-    fun updatePlayersIdList(playerId: Int) {
-        this.playersIdList.add(playerId)
     }
 
     private fun updatePlayerList(list: List<DrinkGamePlayer>) {

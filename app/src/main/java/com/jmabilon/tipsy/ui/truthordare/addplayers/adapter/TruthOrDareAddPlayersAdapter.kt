@@ -1,8 +1,6 @@
 package com.jmabilon.tipsy.ui.truthordare.addplayers.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -22,8 +20,6 @@ import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersSwitchV
 import com.jmabilon.tipsy.ui.truthordare.addplayers.viewholder.AddPlayersTextFieldViewHolder
 
 class TruthOrDareAddPlayersAdapter(
-    private val context: Context,
-    private val view: View,
     private val addPLayersBottomListener: AddPlayersBottomViewHolder.AddPLayersBottomListener,
     private val addPLayersAddButtonListener: AddPlayersAddButtonViewHolder.AddPlayersAddButtonListener,
     private val addPlayersTextFieldListener: AddPlayersTextFieldViewHolder.AddPlayersTextFieldListener,
@@ -31,7 +27,7 @@ class TruthOrDareAddPlayersAdapter(
 ) :
     ListAdapter<AddPlayerItemViewPresentation, RecyclerView.ViewHolder>(DiffCallBack()) {
 
-    fun initData(
+    fun setupData(
         playerList: List<TruthOrDarePlayer>?,
         playerSettings: Boolean
     ) {
@@ -51,6 +47,12 @@ class TruthOrDareAddPlayersAdapter(
             )
         )
 
+        listLocal.add(
+            AddPlayerItemViewPresentation(
+                type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_ADD_BUTTON
+            )
+        )
+
         playerList?.let {
             for (item in it) {
                 item.playerName?.let { name ->
@@ -59,8 +61,7 @@ class TruthOrDareAddPlayersAdapter(
                 listLocal.add(
                     AddPlayerItemViewPresentation(
                         type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD,
-                        player = item,
-                        playerPosition = playerPosition
+                        player = item
                     )
                 )
                 playerPosition += 1
@@ -69,83 +70,9 @@ class TruthOrDareAddPlayersAdapter(
 
         listLocal.add(
             AddPlayerItemViewPresentation(
-                type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_ADD_BUTTON,
-                playersNameList = playersNameList
-            )
-        )
-
-        listLocal.add(
-            AddPlayerItemViewPresentation(
                 type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_BOTTOM
             )
         )
-
-        this.submitList(
-            listLocal.toList()
-        )
-    }
-
-    fun updateTextFieldsList(
-        newPlayer: TruthOrDarePlayer
-    ) {
-        val listLocal = mutableListOf<AddPlayerItemViewPresentation>()
-        var playerPosition = 0
-
-        for (item in currentList.toList()) {
-            val copyItem = item.copy()
-
-            if (copyItem.type == AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD) {
-                copyItem.playerPosition?.let { position ->
-                    playerPosition = position
-                }
-            }
-            if (copyItem.type == AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_ADD_BUTTON) {
-                listLocal.add(
-                    AddPlayerItemViewPresentation(
-                        type = AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD,
-                        player = newPlayer,
-                        playerPosition = playerPosition + 1
-                    )
-                )
-                copyItem.playersNameList?.add(newPlayer.playerName.toString())
-                listLocal.add(copyItem)
-            } else {
-                listLocal.add(copyItem)
-            }
-        }
-
-        this.submitList(
-            listLocal.toList()
-        )
-    }
-
-    fun removeTextField(playerName: String, position: Int) {
-        val listLocal = mutableListOf<AddPlayerItemViewPresentation>()
-
-        for (item in currentList.toList()) {
-            val copyItem = item.copy()
-
-            if (copyItem.type == AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD) {
-                if (copyItem.playerPosition != position) {
-                    copyItem.playerPosition?.let {
-                        if (it > position) {
-                            listLocal.add(
-                                copyItem.apply {
-                                    playerPosition = playerPosition?.minus(1)
-                                }
-                            )
-                        } else {
-                            listLocal.add(copyItem)
-                        }
-                    }
-                }
-            } else if (copyItem.type == AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_ADD_BUTTON) {
-                copyItem.playersNameList?.remove(playerName)
-                listLocal.add(copyItem)
-            } else {
-                listLocal.add(copyItem)
-            }
-        }
 
         this.submitList(
             listLocal.toList()
@@ -223,15 +150,12 @@ class TruthOrDareAddPlayersAdapter(
                 AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD.viewType -> {
                     (holder as AddPlayersTextFieldViewHolder).bind(
                         item,
-                        context,
-                        view,
                         addPlayersTextFieldListener
                     )
                 }
 
                 AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_ADD_BUTTON.viewType -> {
                     (holder as AddPlayersAddButtonViewHolder).bind(
-                        item,
                         addPLayersAddButtonListener
                     )
                 }
@@ -260,19 +184,7 @@ class TruthOrDareAddPlayersAdapter(
             oldItem: AddPlayerItemViewPresentation,
             newItem: AddPlayerItemViewPresentation
         ): Boolean {
-            return if (oldItem.type != newItem.type) {
-                false
-            } else {
-                when (oldItem.type) {
-                    AddPlayersItemViewEnum.ITEM_ADD_PLAYERS_TEXT_FIELD -> {
-                        oldItem.player == newItem.player && oldItem.playerPosition == newItem.playerPosition
-                    }
-
-                    else -> {
-                        oldItem == newItem
-                    }
-                }
-            }
+            return oldItem == newItem
         }
     }
 }
