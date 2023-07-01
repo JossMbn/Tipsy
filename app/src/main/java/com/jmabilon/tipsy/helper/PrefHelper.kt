@@ -17,6 +17,7 @@ class PrefHelper(context: Context) {
     companion object {
         // Truth Or Dare
         private val TOD_PLAYER_SETTING = booleanPreferencesKey("TOD_PLAYER_SETTING")
+        private val WARNING_VISIBILITY = booleanPreferencesKey("WARNING_VISIBILITY")
     }
 
     suspend fun setTodPlayerSetting(value: Boolean) {
@@ -25,5 +26,13 @@ class PrefHelper(context: Context) {
 
     suspend fun getTodPlayerSetting(): Boolean {
         return dataStore.getBoolean(TOD_PLAYER_SETTING).first()
+    }
+
+    suspend fun setWarningVisibility(value: Boolean) {
+        dataStore.setBoolean(WARNING_VISIBILITY, value)
+    }
+
+    suspend fun getWarningVisibility(): Boolean {
+        return dataStore.getBoolean(WARNING_VISIBILITY).first()
     }
 }

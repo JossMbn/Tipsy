@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_nav_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
@@ -42,6 +43,9 @@
             app:exitAnim="@anim/from_center_to_left"
             app:popEnterAnim="@anim/from_left_to_right"
             app:popExitAnim="@anim/from_center_to_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_warningFragment"
+            app:destination="@id/warningFragment" />
     </fragment>
     <dialog
         android:id="@+id/endGameDialogFragment"
@@ -184,4 +188,8 @@
                 app:destination="@id/endGameDialogFragment" />
         </fragment>
     </navigation>
+    <dialog
+        android:id="@+id/warningFragment"
+        android:name="com.jmabilon.tipsy.ui.warning.WarningFragment"
+        android:label="WarningFragment" />
 </navigation>

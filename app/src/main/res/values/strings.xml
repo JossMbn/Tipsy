@@ -1,10 +1,12 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     // Common
     <string name="app_name">Tipsy</string>
     <string name="app_version">v%1$s</string>
     <string name="common_or">OR</string>
     <string name="common_start">Start !</string>
     <string name="common_go_home">Go home</string>
+    <string name="common_ok" tools:ignore="ButtonCase,Typos">Ok</string>
+    <string name="common_exit">Exit</string>
     <string name="common_next">Next</string>
     <string name="end_game_dialog_default_subtitle">You have come to the end of the game !</string>
     <string name="common_congratulation">Congratulation !</string>
@@ -102,4 +104,8 @@
         <item>%1$s, toss heads or tails. Choose first the face that will make you drink 7 mouthful and the one that will make you distribute them</item>
         <item>%1$s balance on your hands or drink 3 mouthful</item>
     </string-array>
+
+    // Warning Dialog
+    <string name="warning_message">L\'abus d\'alcool est dangereux pour la santé.\nVous êtes responsable des éventuelles conséquences que pourrait engendrer l\'utilisation de Tipsy.\n\nAmusez-vous bien !</string>
+    <string name="warning_title">Attention !</string>
 </resources>
