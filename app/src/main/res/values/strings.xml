@@ -116,6 +116,6 @@
     </string-array>
 
     // Warning Dialog
-    <string name="warning_message">L\'abus d\'alcool est dangereux pour la santé.\nVous êtes responsable des éventuelles conséquences que pourrait engendrer l\'utilisation de Tipsy.\n\nAmusez-vous bien !</string>
-    <string name="warning_title">Attention !</string>
+    <string name="warning_message">Alcohol abuse is dangerous to your health.\n\nYou are responsible for any consequences of using Tipsy.\n\nHave fun!</string>
+    <string name="warning_title">Caution !</string>
 </resources>
