@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/drink_game_gradiant"
-    android:paddingTop="25dp">
+    android:background="@drawable/drink_game_gradiant">
 
     <LinearLayout
         android:id="@+id/header_component"
@@ -13,6 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="15dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:adUnitId="ca-app-pub-2132066617984288/7515658517"
         app:layout_constraintBottom_toTopOf="@+id/gameSentence"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:adUnitId="ca-app-pub-2132066617984288/7515658517"
         app:layout_constraintBottom_toTopOf="@+id/nextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
