@@ -37,35 +37,39 @@ class DrinkGameViewModel @Inject constructor(
     private var questionNumber: Int = 0
 
     fun loadData(playerQuestionArray: Array<String>) {
-        playerQuestionsData = playerQuestionArray.toList().shuffled()
         getPlayersName()
+        playerQuestionsData = playerQuestionArray.toList().shuffled()
         updateData()
     }
 
     fun updateData() {
-        randomChoose = (0..1).random()
-        when (randomChoose) {
-            0 -> {
-                if (questionNumber >= MAX_GAME_QUESTION) {
-                    updateGameIsFinish(true)
-                } else {
-                    updateSentence(simpleQuestionsData[simpleQuestionsDataPosition])
-                    simpleQuestionsDataPosition += 1
-                }
-            }
-
-            1 -> {
-                playerQuestionsData?.let {
+        if (playersNames.isNullOrEmpty()) {
+            updateData()
+        } else {
+            randomChoose = (0..1).random()
+            when (randomChoose) {
+                0 -> {
                     if (questionNumber >= MAX_GAME_QUESTION) {
                         updateGameIsFinish(true)
                     } else {
-                        updateSentence(String.format(it[playerQuestionsDataPosition], nextPlayer()))
-                        playerQuestionsDataPosition += 1
+                        updateSentence(simpleQuestionsData[simpleQuestionsDataPosition])
+                        simpleQuestionsDataPosition += 1
+                    }
+                }
+
+                1 -> {
+                    playerQuestionsData?.let {
+                        if (questionNumber >= MAX_GAME_QUESTION) {
+                            updateGameIsFinish(true)
+                        } else {
+                            updateSentence(String.format(it[playerQuestionsDataPosition], nextPlayer()))
+                            playerQuestionsDataPosition += 1
+                        }
                     }
                 }
             }
+            questionNumber += 1
         }
-        questionNumber += 1
     }
 
     private fun getPlayersName() {
