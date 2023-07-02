@@ -34,34 +34,34 @@ class HomeAdapter(
         val popularGameList = listOf(
             CardData(
                 HomeCardTypeEnum.DRINK_GAME,
-                "Drink Game",
-                "For an unforgettable evening !",
+                context.resources.getString(R.string.drink_game_name),
+                context.resources.getString(R.string.drink_game_description),
                 ContextCompat.getDrawable(context, R.drawable.ico_bottles)
             ),
             CardData(
                 HomeCardTypeEnum.TRUTH_OR_DARE,
-                "Truth or Dare",
-                "The best game to get to know your friends better !",
+                context.resources.getString(R.string.tod_game_name),
+                context.resources.getString(R.string.tod_game_description),
                 ContextCompat.getDrawable(context, R.drawable.ico_heart)
             )
         )
         val softGameList = listOf(
             CardData(
                 HomeCardTypeEnum.DILEMMA,
-                "Dilemma",
-                "What would you do if you need to choose between two dilemmas ?",
+                context.resources.getString(R.string.dilemma_game_name),
+                context.resources.getString(R.string.dilemma_game_description),
                 ContextCompat.getDrawable(context, R.drawable.ic_question_mark)
             ),
             CardData(
                 HomeCardTypeEnum.MOST_LIKELY_TO,
-                "Most likely to",
-                "The best game to get to know your friends better !",
+                context.resources.getString(R.string.mlt_game_name),
+                context.resources.getString(R.string.mlt_game_description),
                 ContextCompat.getDrawable(context, R.drawable.ico_flash_bolt)
             ),
             CardData(
                 HomeCardTypeEnum.NEVER_HAVE_I_EVER,
-                "Never have I ever",
-                "The best game to get to know your friends better !",
+                context.resources.getString(R.string.nhie_game_name),
+                context.resources.getString(R.string.nhie_game_description),
                 ContextCompat.getDrawable(context, R.drawable.ico_cross)
             )
         )

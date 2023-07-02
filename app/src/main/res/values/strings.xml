@@ -17,6 +17,16 @@
     // Home
     <string name="home_soft_section">Soft Games</string>
     <string name="home_popular_section">Most Popular</string>
+    <string name="drink_game_name">Drink Game</string>
+    <string name="drink_game_description">For an unforgettable evening !</string>
+    <string name="tod_game_name">Truth or Dare</string>
+    <string name="tod_game_description">The best game to get to know your friends better !</string>
+    <string name="dilemma_game_name">Would you rather</string>
+    <string name="dilemma_game_description">What would you do if you need to choose between two dilemmas ?</string>
+    <string name="mlt_game_name">Most likely to</string>
+    <string name="mlt_game_description">Ready to break friendships !</string>
+    <string name="nhie_game_name">Never have I ever</string>
+    <string name="nhie_game_description">Discover your friend\'s secrets !</string>
 
     // Dilemma
     <string name="would_you_rather">Would you rather</string>
