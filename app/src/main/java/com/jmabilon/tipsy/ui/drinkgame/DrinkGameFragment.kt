@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.databinding.FragmentDrinkGameBinding
-import com.jmabilon.tipsy.extensions.android.getBaseApplication
+import com.jmabilon.tipsy.extensions.android.getAbsActivity
 import com.jmabilon.tipsy.extensions.android.safeNavigation
 import com.jmabilon.tipsy.extensions.viewbinding.AbsViewBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +28,7 @@ class DrinkGameFragment : AbsViewBindingFragment<FragmentDrinkGameBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listOf(binding.adViewTop, binding.adViewBottom).forEach {adView ->
-            requireActivity().getBaseApplication()?.adRequest?.let {
+            requireActivity().getAbsActivity()?.adRequest?.let {
                 adView.loadAd(it)
             }
         }
@@ -66,13 +66,9 @@ class DrinkGameFragment : AbsViewBindingFragment<FragmentDrinkGameBinding>() {
                     binding.gameSentence.text = it
                 }
                 if (gameIsFinish) {
-                    requireActivity().getBaseApplication()?.interstitialAd?.show(
-                        requireActivity()
-                    ) ?: run {
-                        val directions =
-                            DrinkGameFragmentDirections.actionDrinkGameFragmentToEndGameDialogFragment()
-                        safeNavigation(directions)
-                    }
+                    val directions =
+                        DrinkGameFragmentDirections.actionDrinkGameFragmentToEndGameDialogFragment()
+                    safeNavigation(directions)
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }

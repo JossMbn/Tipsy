@@ -31,6 +31,7 @@ class TruthOrDareViewModel @Inject constructor(
     private var dareDataPosition = 0
     private var truthDataPosition = 0
     private var playerNameListPosition = 0
+    private var countUntilNextAd = 15
 
     fun getNextCard(playerList: List<String>?, playerChoice: TruthOrDareConstants.Choice) {
         if (truthDataPosition >= truthData.size || dareDataPosition >= dareData.size) {
@@ -42,6 +43,7 @@ class TruthOrDareViewModel @Inject constructor(
                 }
                 when (playerChoice) {
                     TruthOrDareConstants.Choice.TRUTH -> {
+                        minusAdsCount()
                         updateNextCard(
                             TruthOrDare(
                                 type = TruthOrDareConstants.Type.GAME,
@@ -54,6 +56,7 @@ class TruthOrDareViewModel @Inject constructor(
                     }
 
                     TruthOrDareConstants.Choice.DARE -> {
+                        minusAdsCount()
                         updateNextCard(
                             TruthOrDare(
                                 type = TruthOrDareConstants.Type.GAME,
@@ -91,6 +94,7 @@ class TruthOrDareViewModel @Inject constructor(
             } ?: run {
                 when (playerChoice) {
                     TruthOrDareConstants.Choice.TRUTH -> {
+                        minusAdsCount()
                         updateNextCard(
                             TruthOrDare(
                                 type = TruthOrDareConstants.Type.GAME,
@@ -103,6 +107,7 @@ class TruthOrDareViewModel @Inject constructor(
                     }
 
                     TruthOrDareConstants.Choice.DARE -> {
+                        minusAdsCount()
                         updateNextCard(
                             TruthOrDare(
                                 type = TruthOrDareConstants.Type.GAME,
@@ -134,6 +139,13 @@ class TruthOrDareViewModel @Inject constructor(
         }
     }
 
+    private fun minusAdsCount() {
+        countUntilNextAd -= 1
+        if (countUntilNextAd < 0) {
+            updateShowAds(true)
+        }
+    }
+
     fun getTodPlayerSetting() {
         viewModelScope.launch(Dispatchers.IO) {
             updatePlayerSettings(prefHelper.getTodPlayerSetting())
@@ -155,6 +167,12 @@ class TruthOrDareViewModel @Inject constructor(
             updatePlayersNames(truthOrDarePlayerRepository.getAllPlayersName().shuffled())
         }
     }
+
+    fun resetShowAds() {
+        countUntilNextAd = 15
+        updateShowAds(false)
+    }
+
 
     private fun updateNextCard(card: TruthOrDare?) {
         _uiState.update { currentState ->
@@ -186,6 +204,14 @@ class TruthOrDareViewModel @Inject constructor(
         _uiState.update { currentState ->
             currentState.copy(
                 playerSettings = settings
+            )
+        }
+    }
+
+    private fun updateShowAds(isDisplay: Boolean) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                showAds = isDisplay
             )
         }
     }

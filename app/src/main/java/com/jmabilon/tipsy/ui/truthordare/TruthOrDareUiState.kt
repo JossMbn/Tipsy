@@ -6,5 +6,6 @@ data class TruthOrDareUiState(
     val nextCard: TruthOrDare? = null,
     val playersNamesList: List<String>? = null,
     val isGameFinish: Boolean = false,
-    val playerSettings: Boolean? = false
+    val playerSettings: Boolean? = false,
+    val showAds: Boolean = false
 )

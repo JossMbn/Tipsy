@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.data.TruthOrDare
 import com.jmabilon.tipsy.databinding.FragmentTruthOrDareBinding
+import com.jmabilon.tipsy.extensions.android.getAbsActivity
 import com.jmabilon.tipsy.extensions.android.safeNavigation
 import com.jmabilon.tipsy.extensions.viewbinding.AbsViewBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -85,13 +86,26 @@ class TruthOrDareFragment :
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (viewModel.uiState.value.isGameFinish) {
+            val directions =
+                TruthOrDareFragmentDirections.actionTruthOrDareFragmentToEndGameDialogFragment()
+            safeNavigation(directions)
+        }
+    }
+
     override fun initViewModelObservation() {
         super.initViewModelObservation()
 
         viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.RESUMED)
             .onEach { uiState ->
-                val (nextCard, playersNameList, isGameFinish, playerSettings) = uiState
+                val (nextCard, playersNameList, isGameFinish, playerSettings, showAds) = uiState
 
+                if (showAds) {
+                    viewModel.resetShowAds()
+                    requireActivity().getAbsActivity()?.showInterstitialAd()
+                }
                 playerSettings?.let {
                     if (it) {
                         viewModel.getPlayersName()
@@ -108,9 +122,7 @@ class TruthOrDareFragment :
                     this.nextCard = it
                 }
                 if (isGameFinish) {
-                    val directions =
-                        TruthOrDareFragmentDirections.actionTruthOrDareFragmentToEndGameDialogFragment()
-                    safeNavigation(directions)
+                    requireActivity().getAbsActivity()?.showInterstitialAd()
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }

@@ -9,6 +9,7 @@ import android.view.KeyEvent
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
 import com.jmabilon.tipsy.databinding.EndGameDialogBinding
+import com.jmabilon.tipsy.extensions.android.getAbsActivity
 import com.jmabilon.tipsy.extensions.android.safeNavigation
 
 class EndGameDialogFragment : DialogFragment() {
@@ -38,6 +39,8 @@ class EndGameDialogFragment : DialogFragment() {
                 EndGameDialogFragmentDirections.actionEndGameDialogFragmentToHomeFragment()
             safeNavigation(directions)
         }
+
+        requireActivity().getAbsActivity()?.showInterstitialAd()
 
         return dialog
     }
