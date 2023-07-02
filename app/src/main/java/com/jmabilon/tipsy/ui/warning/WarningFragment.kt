@@ -2,6 +2,7 @@ package com.jmabilon.tipsy.ui.warning
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -36,6 +37,9 @@ class WarningFragment : AbsViewBindingBottomSheetDialogFragment<FragmentWarningB
         dialog.behavior.isDraggable = false
         dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
+        dialog.setOnKeyListener { _, keyCode, _ ->
+            keyCode == KeyEvent.KEYCODE_BACK
+        }
         return dialog
     }
 }

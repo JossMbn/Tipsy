@@ -1,5 +1,6 @@
 package com.jmabilon.tipsy.ui.home.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ import com.jmabilon.tipsy.ui.home.viewholder.HomeSectionViewHolder
 
 class HomeAdapter(
     private val context: Context,
+    private val activity: Activity,
     private val homeGameCardListener: HomeGameCardViewHolder.HomeGameCardListener
 ) :
     ListAdapter<HomeItemViewPresentation, RecyclerView.ViewHolder>(DiffCallBack()) {
@@ -193,7 +195,7 @@ class HomeAdapter(
                 }
 
                 HomeItemViewEnum.HOME_ADS_ITEM.viewType -> {
-                    (holder as HomeAdsViewHolder).bind()
+                    (holder as HomeAdsViewHolder).bind(activity)
                 }
 
                 HomeItemViewEnum.HOME_FOOTER_ITEM.viewType -> {

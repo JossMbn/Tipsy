@@ -33,7 +33,7 @@ class HomeFragment :
         super.onViewCreated(view, savedInstanceState)
         launchBackgroundAnimation()
 
-        homeAdapter = HomeAdapter(requireContext(), this)
+        homeAdapter = HomeAdapter(requireContext(), requireActivity(), this)
         homeAdapter?.initData()
 
         binding.recyclerView.apply {
