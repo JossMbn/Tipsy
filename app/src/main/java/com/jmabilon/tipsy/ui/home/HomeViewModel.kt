@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,9 +24,9 @@ class HomeViewModel @Inject constructor(
     fun checkWarningVisibility() {
         viewModelScope.launch(Dispatchers.IO) {
             if (!prefHelper.getWarningVisibility()) {
-                withContext(Dispatchers.Main) {
-                    updateDisplayWarning(true)
-                }
+                updateDisplayWarning(true)
+            } else {
+                updateDisplayWarning(false)
             }
         }
     }
