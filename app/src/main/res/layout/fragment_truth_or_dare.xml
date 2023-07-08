@@ -48,23 +48,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="15dp"
+        android:paddingHorizontal="15dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_component">
 
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tod_ad_view_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-2132066617984288/3418616936" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginVertical="50dp"
+                android:layout_margin="20dp"
                 android:layout_weight="1"
                 android:elevation="5dp"
                 android:rotation="-5"
@@ -78,8 +88,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginVertical="50dp"
+                android:layout_margin="20dp"
                 android:layout_weight="1"
                 android:elevation="5dp"
                 android:rotation="5"
@@ -93,8 +102,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginVertical="50dp"
+                android:layout_margin="20dp"
                 android:layout_weight="1"
                 android:elevation="5dp"
                 app:cardBackgroundColor="@color/white"
@@ -227,11 +235,19 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tod_ad_view_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-2132066617984288/3418616936" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="35dp">
 
             <androidx.appcompat.widget.AppCompatTextView

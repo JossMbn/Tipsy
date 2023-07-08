@@ -39,6 +39,11 @@ class TruthOrDareFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().getAbsActivity()?.adRequest?.let { adRequest ->
+            listOf(binding.todAdViewTop, binding.todAdViewBottom).forEach {
+                it.loadAd(adRequest)
+            }
+        }
         fadeOutAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out_animation)
         fadeInAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in_animation)
 

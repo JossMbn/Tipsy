@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.jmabilon.tipsy.R
 import com.jmabilon.tipsy.databinding.FragmentNeverHaveIEverBinding
+import com.jmabilon.tipsy.extensions.android.getAbsActivity
 import com.jmabilon.tipsy.extensions.android.safeNavigation
 import com.jmabilon.tipsy.extensions.viewbinding.AbsViewBindingFragment
 import kotlinx.coroutines.flow.launchIn
@@ -33,6 +34,11 @@ class NeverHaveIEverFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().getAbsActivity()?.adRequest?.let { adRequest ->
+            listOf(binding.nhieAdViewTop, binding.nhieAdViewBottom).forEach {
+                it.loadAd(adRequest)
+            }
+        }
         toLeft = AnimationUtils.loadAnimation(
             requireContext(),
             R.anim.from_center_to_left_text_animation
