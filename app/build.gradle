@@ -6,6 +6,15 @@ plugins {
     id 'kotlin-kapt'
 }
 
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+
+static def getTimestamp() {
+    def date = new Date()
+    return (date.time / 1000).toInteger()
+}
+
 android {
     namespace 'com.jmabilon.tipsy'
     compileSdk 33
@@ -14,8 +23,8 @@ android {
         applicationId "com.jmabilon.tipsy"
         minSdk 26
         targetSdk 33
-        versionCode 1
-        versionName "1.0.0"
+        versionCode getTimestamp()
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
         javaCompileOptions {
             annotationProcessorOptions {
